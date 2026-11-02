@@ -26,8 +26,8 @@ header{text-align:center;padding:31px 0 12px}
 .tools button{cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:42px;padding:0}
 .tools button svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 h2{margin:44px 0 0;font-size:1rem;font-weight:600;text-align:center;color:var(--ink);letter-spacing:.04em}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:40px 28px;padding:24px 0 0}
-.gig{display:block;text-decoration:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:40px 28px;padding:24px 0 0}
+.gig{display:block;min-width:0;text-decoration:none;overflow-wrap:anywhere}
 .gig[hidden],section[hidden]{display:none}
 .pic{display:block;aspect-ratio:1/1;border-radius:6px;background:var(--subtle) center/cover no-repeat}
 .when{display:block;margin-top:14px;font-size:.85rem;color:var(--dim)}
@@ -38,7 +38,7 @@ h2{margin:44px 0 0;font-size:1rem;font-weight:600;text-align:center;color:var(--
 .cta{display:inline-block;margin-top:10px;font-size:.9rem;font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:1px}
 .empty{color:var(--dim);padding:32px 0 0;text-align:center}
 @media (max-width:640px){header{padding:20px 0 10px}main{padding:0 16px 64px}
-.grid{grid-template-columns:repeat(2,1fr);gap:28px 14px}.act{font-size:1rem}.meta{font-size:.82rem}}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px}.act{font-size:1rem}.meta{font-size:.82rem}}
 """)
 
 _JS = """
@@ -48,6 +48,10 @@ document.querySelectorAll('.gig').forEach(g=>{g.hidden=!((!t||g.dataset.t.includ
 document.querySelectorAll('section').forEach(s=>{s.hidden=![...s.querySelectorAll('.gig')].some(g=>!g.hidden)});
 document.getElementById('none').hidden=[...document.querySelectorAll('.gig')].some(g=>!g.hidden)}
 q.oninput=v.onchange=apply;
+function fit(){const l=document.querySelector('.lede'),m=document.querySelector('.mark');l.style.fontSize='';
+const need=l.scrollWidth,box=m.getBoundingClientRect().width;
+if(need>box){l.style.fontSize=(parseFloat(getComputedStyle(l).fontSize)*box/need*.98)+'px'}}
+fit();document.fonts.ready.then(fit);addEventListener('resize',fit);
 try{if(localStorage.theme==='light')root.dataset.theme='light'}catch(e){}
 const tb=document.getElementById('t');
 const SUN='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
