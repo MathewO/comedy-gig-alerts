@@ -1,6 +1,7 @@
 """The Leadmill comedy listings (Steamworks, Foundry, Sheffield Plate, ...).
 
-The page embeds schema.org Event JSON-LD, so no HTML parsing is needed.
+Uses the site's Events Calendar REST API, which is paginated (the HTML page
+only shows the first 50).
 """
 import html
 import json
@@ -11,40 +12,34 @@ from ..http import get
 from ..model import Event
 
 NAME = "leadmill"
-URL = "https://leadmill.co.uk/events/comedy/"
+API = "https://leadmill.co.uk/wp-json/tribe/events/v1/events?categories=comedy&per_page=50&page={}"
+MAX_PAGES = 10
 
-_LD = re.compile(r'<script[^>]*application/ld\+json[^>]*>(.*?)</script>', re.S)
 # Leadmill appends the venue to act names, e.g. "Finlay Christie (The Steamworks)".
 _VENUE_SUFFIX = re.compile(
     r"\s*\((?=[^)]*(foundry|steamworks|bar one|sheffield|peddler|matinee))[^)]*\)\s*$",
     re.I,
 )
+_MATINEE = re.compile(r"\s*[–-]\s*matinee$", re.I)
 
 
 def fetch() -> list[Event]:
     events: dict[str, Event] = {}
-    for block in _LD.findall(get(URL)):
-        try:
-            data = json.loads(block, strict=False)
-        except ValueError:
-            continue
-        nodes = data if isinstance(data, list) else data.get("@graph", [data])
-        for node in nodes:
-            if not isinstance(node, dict) or node.get("@type") != "Event":
-                continue
-            url = node.get("url", "")
-            if url in events:
-                continue
-            title = _VENUE_SUFFIX.sub("", html.unescape(node["name"])).strip()
-            title = re.sub(r"\s*[–-]\s*matinee$", "", title, flags=re.I)
-            location = node.get("location") or {}
+    page, total_pages = 1, 1
+    while page <= min(total_pages, MAX_PAGES):
+        data = json.loads(get(API.format(page)))
+        total_pages = data.get("total_pages", 1)
+        for item in data["events"]:
+            url = item["url"]
+            title = _VENUE_SUFFIX.sub("", html.unescape(item["title"])).strip()
+            image = item.get("image")
             events[url] = Event(
-                title=title,
-                # The feed labels local time as +00:00 all year; keep the clock time as-is.
-                start=datetime.fromisoformat(node["startDate"][:19]),
-                venue=html.unescape(location.get("name", "Leadmill")),
+                title=_MATINEE.sub("", title),
+                start=datetime.fromisoformat(item["start_date"]),
+                venue=html.unescape((item.get("venue") or {}).get("venue") or "Leadmill"),
                 url=url,
                 source=NAME,
-                image=node.get("image") or None,
+                image=image["url"] if isinstance(image, dict) else None,
             )
+        page += 1
     return list(events.values())

@@ -1,0 +1,19 @@
+name: Probe sources
+on: workflow_dispatch
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch candidate sites
+        run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+          for u in \
+            "https://www.tickettailor.com/events/steelcitycomedy" \
+            "https://www.sheffieldtheatres.co.uk/whats-on/" \
+            "https://www.sheffieldtheatres.co.uk/events/the-mousetrap-2026" \
+            "https://theleadmill.seetickets.com/event/finlay-christie/steamworks/3573853" \
+            "https://www.ticketmaster.co.uk/jonathan-pie-the-end-of-the-sheffield-04-11-2026/event/35006374ECC6A3F2" \
+            "https://www.sheffieldcityhall.co.uk/events/" ; do
+            code=$(curl -sL -A "$UA" -m 30 -o body.html -w '%{http_code} %{size_download}' "$u")
+            echo "PROBE $code ld=$(grep -c 'ld+json' body.html) price=$(grep -oE '£ ?[0-9]+(\.[0-9]{2})?' body.html | sort -u | head -3 | tr '\n' ' ') $u"
+          done
