@@ -5,7 +5,7 @@ Colours are named once here. The page uses them as CSS variables; the email
 """
 
 BRAND = "OBOT"  # sender name and sign-off only
-TITLE = "OBOT - COMEDY"
+TITLE = "OBOT/COMEDY"
 
 # Sheffield orange, used sparingly: one top rule, link underlines, focus ring.
 ACCENT = "#F47B20"

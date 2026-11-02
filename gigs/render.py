@@ -7,7 +7,7 @@ from . import theme
 from .model import Event
 
 _CSS = Template("""
-@font-face{font-family:"Bebas Neue";src:url(fonts/BebasNeue.ttf) format("truetype");font-display:swap}
+@font-face{font-family:Retrolight;src:url(fonts/Retrolight.ttf) format("truetype");font-display:swap}
 :root{$dark;--accent:$accent;color-scheme:dark}
 :root[data-theme=light]{$light;color-scheme:light}
 *{box-sizing:border-box}
@@ -17,9 +17,9 @@ main{max-width:1000px;margin:0 auto;padding:0 24px 80px}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 header{text-align:center;padding:31px 0 12px}
-.brand{display:inline-block;--m:clamp(2rem,20vw,4.6rem)}
-.mark{margin:0;font-family:"Bebas Neue",Impact,$font;font-size:var(--m);font-weight:400;letter-spacing:0;line-height:1;text-transform:uppercase}
-.lede{width:0;min-width:100%;margin:calc(var(--m)*-.15) 0 0;color:var(--dim);font-size:calc(var(--m)*.18);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand{display:inline-block;--m:clamp(1.5rem,11vw,3.3rem)}
+.mark{margin:0;font-family:Retrolight,$font;font-size:var(--m);font-weight:400;letter-spacing:0;line-height:1;text-transform:uppercase}
+.lede{width:0;min-width:100%;margin:calc(var(--m)*.1) 0 0;color:var(--dim);font-size:calc(var(--m)*.3);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tools{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:4px 0 0}
 .tools input,.tools select,.tools button{font:inherit;font-size:.95rem;color:var(--ink);background:var(--subtle);border:1px solid var(--line);border-radius:8px;padding:9px 14px}
 .tools input{flex:0 1 260px}
