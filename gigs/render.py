@@ -7,7 +7,6 @@ from . import theme
 from .model import Event
 
 _CSS = Template("""
-@font-face{font-family:Retrolight;src:url(fonts/Retrolight.ttf) format("truetype");font-display:block}
 :root{$dark;--accent:$accent;color-scheme:dark}
 :root[data-theme=light]{$light;color-scheme:light}
 *{box-sizing:border-box}
@@ -20,7 +19,6 @@ header{text-align:center;padding:31px 0 12px}
 .brand{display:inline-block;--w:min(calc(100vw - 32px),460px)}
 .mark{margin:0;line-height:0;display:grid}
 .mark img{grid-area:1/1;display:block;width:var(--w);height:auto;transition:opacity .35s}
-.unlit{grid-area:1/1;place-self:center;font-family:Retrolight,$font;font-size:calc(var(--w)*.1224);line-height:1;white-space:nowrap;color:var(--ink);transform:scaleY(1.11);transition:opacity .35s}
 .unlit{opacity:0}
 :root[data-theme=light] .lit{opacity:0}
 :root[data-theme=light] .unlit{opacity:1}
@@ -108,7 +106,7 @@ def render(events: list[Event], checked: datetime) -> str:
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
         f"<title>{theme.TITLE}</title><style>{css}</style></head><body><main>"
-        f'<header><div class="brand"><h1 class="mark"><img class="lit" src="title.webp" width="1160" height="184" alt="{theme.TITLE}"><span class="unlit" aria-hidden="true">{theme.TITLE}</span></h1>'
+        f'<header><div class="brand"><h1 class="mark"><img class="lit" src="title.webp" width="1160" height="184" alt="{theme.TITLE}"><img class="unlit" src="title-off.webp" width="1160" height="184" alt="" aria-hidden="true"></h1>'
         f'<p class="lede">{len(events)} upcoming gigs, last checked {stamp}</p></div></header>'
         '<div class="tools"><input id="q" type="search" placeholder="Search act or venue" aria-label="Search act or venue">'
         f'<select id="v" aria-label="Venue"><option value="">All venues</option>{options}</select>'
