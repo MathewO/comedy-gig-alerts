@@ -13,13 +13,12 @@ from gigs import theme  # noqa: E402
 DOCS = Path(__file__).resolve().parents[1] / "docs"
 SCALE = 2          # drawn at 2x so it stays sharp on phones
 WIDTH, HEIGHT = 580, 84
-TRACKING = 3       # extra pixels between letters (1x)
-SIZE = 34
+TRACKING = 5       # extra pixels between letters (1x)
+SIZE = 62
 
 
 def main() -> None:
-    font = ImageFont.truetype(str(DOCS / "fonts" / "Syne.ttf"), SIZE * SCALE)
-    font.set_variation_by_axes([800])
+    font = ImageFont.truetype(str(DOCS / "fonts" / "BebasNeue.ttf"), SIZE * SCALE)
     img = Image.new("RGB", (WIDTH * SCALE, HEIGHT * SCALE), theme.LIGHT["bg"])
     draw = ImageDraw.Draw(img)
     text = theme.TITLE

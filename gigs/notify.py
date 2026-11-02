@@ -74,7 +74,7 @@ def _html(new: list[Event], shown: list[Event]) -> str:
 <div style="display:none;max-height:0;overflow:hidden">{n} new comedy {gigs} been listed in Sheffield.</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:{_C['bg']}"><tr><td align="center" style="padding:40px 16px 32px">
 <table role="presentation" width="580" cellpadding="0" cellspacing="0" style="max-width:580px;width:100%;font-family:{_F}">
-<tr><td align="center" style="border-top:3px solid {theme.ACCENT};padding:28px 0 20px"><img src="{PAGE}wordmark.png" width="290" alt="{theme.TITLE}" style="display:block;width:290px;max-width:100%;height:auto;border:0;font-size:22px;font-weight:700;letter-spacing:.08em;color:{_C['ink']}"></td></tr>
+<tr><td align="center" style="border-top:3px solid {theme.ACCENT};padding:16px 0 8px"><img src="{PAGE}wordmark.png" width="580" alt="{theme.TITLE}" style="display:block;width:100%;max-width:580px;height:auto;border:0;font-size:22px;font-weight:700;letter-spacing:.08em;color:{_C['ink']}"></td></tr>
 <tr><td align="center" style="border-top:1px solid {_C['line']};padding:20px 0 26px;font-size:13px;letter-spacing:.12em;text-transform:uppercase">New gigs</td></tr>
 <tr><td style="font-size:16px;line-height:1.6;padding-bottom:22px">
 <p style="margin:0 0 14px">Hello,</p>
