@@ -37,24 +37,32 @@ def save(state_file: Path, keys: set[str]) -> None:
 
 
 def _row(e: Event) -> str:
+    """One gig. Two inline-block columns: side by side when there is room, stacked when there isn't.
+
+    The <style> block in _html() makes the picture full width on phones; without it
+    (clients that ignore <style>) the columns still wrap into a stack.
+    """
     link = escape(e.url, quote=True)
     price = f" &nbsp;<b style=\"color:{_C['ink']}\">{escape(e.price)}</b>" if e.price else ""
     pic = ""
     if e.image:
         pic = (
-            f'<td width="220" valign="top" style="padding:20px 20px 20px 0"><a href="{link}">'
-            f'<img src="{escape(e.image, quote=True)}" width="220" alt="" '
-            'style="display:block;width:220px;max-width:100%;height:auto;border-radius:6px;border:0"></a></td>'
+            '<div class="gimg" style="display:inline-block;vertical-align:middle;width:100%;max-width:240px;'
+            'box-sizing:border-box;padding-right:20px;font-size:0;line-height:0">'
+            f'<a href="{link}"><img src="{escape(e.image, quote=True)}" width="220" alt="" '
+            'style="display:block;width:100%;height:auto;border-radius:6px;border:0"></a></div>'
         )
-    return (
-        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" '
-        f'style="border-top:1px solid {_C["line"]}"><tr>{pic}'
-        '<td valign="middle" style="padding:20px 0">'
+    text = (
+        '<div class="gtxt" style="display:inline-block;vertical-align:middle;width:100%;max-width:340px;'
+        f'box-sizing:border-box;font-size:16px;line-height:1.4;font-family:{_F}">'
         f'<div style="font-size:13px;color:{_C["dim"]}">{when_text(e)}</div>'
         f'<a href="{link}" style="display:block;margin-top:4px;font-size:18px;font-weight:600;line-height:1.3;color:{_C["ink"]};text-decoration:none">{escape(e.title)}</a>'
         f'<div style="font-size:14px;color:{_C["dim"]};margin-top:4px">{escape(e.venue)}{price}</div>'
         f'<div style="margin-top:12px"><a href="{link}" style="font-size:14px;font-weight:600;color:{_C["ink"]};'
-        f'text-decoration:none;border-bottom:2px solid {theme.ACCENT}">Get tickets</a></div></td></tr></table>'
+        f'text-decoration:none;border-bottom:2px solid {theme.ACCENT}">Get tickets</a></div></div>'
+    )
+    return (
+        f'<div style="border-top:1px solid {_C["line"]};padding:20px 0;font-size:0;line-height:0">{pic}{text}</div>'
     )
 
 
@@ -64,12 +72,12 @@ def _html(new: list[Event], shown: list[Event]) -> str:
     more = ""
     if n > len(shown):
         more = f'<p style="color:{_C["dim"]};font-size:14px;margin:0 0 16px">Plus {n - len(shown)} more on the full list.</p>'
-    return f"""<!doctype html><html><body style="margin:0;background:{_C['bg']};font-family:{_F};color:{_C['ink']}">
+    return f"""<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>@media only screen and (max-width:520px){{.gimg{{max-width:100%!important;padding-right:0!important}}.gtxt{{max-width:100%!important;padding-top:14px!important}}}}</style></head><body style="margin:0;background:{_C['bg']};font-family:{_F};color:{_C['ink']}">
 <div style="display:none;max-height:0;overflow:hidden">{n} new comedy {gigs} been listed in Sheffield.</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td style="height:3px;line-height:3px;font-size:0;background:{theme.ACCENT}">&nbsp;</td></tr></table>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:{_C['bg']}"><tr><td align="center" style="padding:28px 16px 32px">
 <table role="presentation" width="580" cellpadding="0" cellspacing="0" style="max-width:580px;width:100%;font-family:{_F}">
-<tr><td align="center" style="padding:0"><img src="{PAGE}wordmark.png" width="580" alt="{theme.TITLE}" style="display:block;width:100%;max-width:580px;height:auto;border:0;font-size:22px;font-weight:700;letter-spacing:.08em;color:{_C['ink']}"></td></tr>
+<tr><td align="center" style="padding:0"><img src="{PAGE}title.png" width="580" alt="{theme.TITLE}" style="display:block;width:100%;max-width:580px;height:auto;border:0;font-size:22px;font-weight:700;letter-spacing:.08em;color:{_C['ink']}"></td></tr>
 <tr><td align="center" style="font-size:16px;line-height:1.6;padding:0 0 24px;text-align:center">
 <p style="margin:0">Hello, {n} new comedy {gigs} been listed in Sheffield. Details below.</p></td></tr>
 <tr><td>{"".join(_row(e) for e in shown)}<div style="border-top:1px solid {_C['line']};font-size:0">&nbsp;</div></td></tr>

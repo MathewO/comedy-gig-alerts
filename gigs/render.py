@@ -7,7 +7,6 @@ from . import theme
 from .model import Event
 
 _CSS = Template("""
-@font-face{font-family:Retrolight;src:url(fonts/Retrolight.ttf) format("truetype");font-display:swap}
 :root{$dark;--accent:$accent;color-scheme:dark}
 :root[data-theme=light]{$light;color-scheme:light}
 *{box-sizing:border-box}
@@ -17,9 +16,10 @@ main{max-width:1000px;margin:0 auto;padding:0 24px 80px}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 header{text-align:center;padding:31px 0 12px}
-.brand{display:inline-block;--m:clamp(1.5rem,11vw,3.3rem)}
-.mark{margin:0;font-family:Retrolight,$font;font-size:var(--m);font-weight:400;letter-spacing:0;line-height:1;text-transform:uppercase}
-.lede{width:0;min-width:100%;margin:calc(var(--m)*.1) 0 0;color:var(--dim);font-size:calc(var(--m)*.3);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand{display:inline-block}
+.mark{margin:0;line-height:0}
+.mark img{display:block;width:min(calc(100vw - 32px),460px);height:auto}
+.lede{width:0;min-width:100%;margin:3px 0 0;color:var(--dim);font-size:clamp(.8rem,3.2vw,1rem);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
 .tools{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:4px 0 0}
 .tools input,.tools select,.tools button{font:inherit;font-size:.95rem;color:var(--ink);background:var(--subtle);border:1px solid var(--line);border-radius:8px;padding:9px 14px}
 .tools input{flex:0 1 260px}
@@ -38,7 +38,8 @@ h2{margin:44px 0 0;font-size:1rem;font-weight:600;text-align:center;color:var(--
 .cta{display:inline-block;margin-top:10px;font-size:.9rem;font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:1px}
 .empty{color:var(--dim);padding:32px 0 0;text-align:center}
 @media (max-width:640px){header{padding:20px 0 10px}main{padding:0 16px 64px}
-.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px}.act{font-size:1rem}.meta{font-size:.82rem}}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px}
+.tools{display:grid;grid-template-columns:minmax(0,1fr) 42px}.tools input{grid-column:1/-1;width:100%}.tools select{width:100%;min-width:0}.act{font-size:1rem}.meta{font-size:.82rem}}
 """)
 
 _JS = """
@@ -102,7 +103,7 @@ def render(events: list[Event], checked: datetime) -> str:
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
         f"<title>{theme.TITLE}</title><style>{css}</style></head><body><main>"
-        f'<header><div class="brand"><h1 class="mark">{theme.TITLE}</h1>'
+        f'<header><div class="brand"><h1 class="mark"><img src="title.webp" width="1160" height="184" alt="{theme.TITLE}"></h1>'
         f'<p class="lede">{len(events)} upcoming gigs, last checked {stamp}</p></div></header>'
         '<div class="tools"><input id="q" type="search" placeholder="Search act or venue" aria-label="Search act or venue">'
         f'<select id="v" aria-label="Venue"><option value="">All venues</option>{options}</select>'
