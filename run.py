@@ -6,7 +6,8 @@ import sys
 from pathlib import Path
 
 from gigs import notify, sources
-from gigs.model import Event, uk_now
+from gigs.model import Event, act_of, uk_now
+from gigs.sources import performancevenues
 from gigs.render import render
 
 DOCS = Path(__file__).parent / "docs"
@@ -15,6 +16,21 @@ STATE = Path(__file__).parent / "state" / "alerted.json"
 
 # Sources spell some venues differently; show each venue once.
 VENUE_ALIASES = {"Octagon": "Octagon Centre"}
+
+
+def prefer_university_pages(events, report: dict[str, str]) -> None:
+    """Octagon tickets are better (choose your seats) on the University's page than on Ticketmaster."""
+    try:
+        pages = performancevenues.university_pages()
+    except Exception as exc:  # keep the original links rather than fail the run
+        report["university-links"] = f"FAILED: {exc}"
+        return
+    swapped = 0
+    for e in events:
+        link = pages.get((e.start.date().isoformat(), act_of(e.title))) if e.venue == "Octagon Centre" else None
+        if link and e.url != link:
+            e.url, swapped = link, swapped + 1
+    report["university-links"] = f"{swapped} Octagon links switched"
 
 
 def collect() -> tuple[list[Event], dict[str, str]]:
@@ -35,6 +51,7 @@ def collect() -> tuple[list[Event], dict[str, str]]:
             # Earlier source wins; fill any gaps from later ones.
             have.image = have.image or e.image
             have.price = have.price or e.price
+    prefer_university_pages(merged.values(), report)
     now = uk_now()
     upcoming = sorted((e for e in merged.values() if e.start >= now.replace(hour=0, minute=0)), key=lambda e: e.start)
     return upcoming, report

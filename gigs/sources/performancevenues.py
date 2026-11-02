@@ -12,7 +12,7 @@ from datetime import datetime
 from pathlib import Path
 
 from ..http import get
-from ..model import Event
+from ..model import Event, act_of
 
 NAME = "performancevenues"
 API = (
@@ -49,10 +49,33 @@ def _start(date_text: str, time_text: str) -> datetime | None:
     return day
 
 
+_RECORDS: list | None = None
+
+
+def _records() -> list:
+    global _RECORDS
+    if _RECORDS is None:
+        _RECORDS = json.loads(get(API))
+    return _RECORDS
+
+
+def university_pages() -> dict[tuple[str, str], str]:
+    """(date, act) -> University event page, for every listed event (some carry a placeholder venue)."""
+    pages: dict[tuple[str, str], str] = {}
+    for item in _records():
+        acf = item.get("acf") or {}
+        act = act_of(html.unescape(item["title"]["rendered"]))
+        for field in _DATE_FIELDS:
+            start = _start(acf.get(field, ""), "")
+            if start:
+                pages[(start.date().isoformat(), act)] = item["link"]
+    return pages
+
+
 def fetch() -> list[Event]:
     cache: dict[str, bool] = json.loads(CACHE.read_text()) if CACHE.exists() else {}
     events: list[Event] = []
-    for item in json.loads(get(API)):
+    for item in _records():
         acf = item.get("acf") or {}
         link = item["link"]
         starts = [s for f in _DATE_FIELDS if (s := _start(acf.get(f, ""), acf.get("time", "")))]

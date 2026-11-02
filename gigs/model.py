@@ -3,6 +3,13 @@ from dataclasses import dataclass
 from datetime import datetime
 
 
+def act_of(title: str) -> str:
+    """The act's name from a show title: before a colon or spaced dash, lower-cased, extra-date labels dropped."""
+    first = re.split(r":|\s[-–]\s", title.lower())[0]
+    first = re.sub(r"^(second|third|extra|added|new)\s+date\s*", "", first)
+    return re.sub(r"[^a-z0-9]+", " ", first).strip()
+
+
 def uk_now() -> datetime:
     """Current UK clock time (gig times are UK local; the Actions runner is on UTC)."""
     try:
@@ -34,7 +41,7 @@ class Event:
 
     def key(self) -> tuple[str, str, str]:
         """Identity used to merge the same gig seen by different sources."""
-        act = re.sub(r"[^a-z0-9]+", " ", re.split(r":|\s[-–]\s", self.title.lower())[0]).strip()
+        act = act_of(self.title)
         part = "matinee" if self.start.hour < 17 else "evening"
         return (self.start.date().isoformat(), act, part)
 
