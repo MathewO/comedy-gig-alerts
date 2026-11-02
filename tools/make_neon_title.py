@@ -35,8 +35,12 @@ def main() -> None:
     img = Image.fromarray((np.dstack([colour, alpha]) * 255).astype(np.uint8), "RGBA")
     box = img.getchannel("A").point(lambda v: 255 if v > 30 else 0).getbbox()
     pad = 60
-    img = img.crop((max(box[0] - pad, 0), max(box[1] - pad, 0), min(box[2] + pad, img.width), min(box[3] + pad, img.height)))
-    img = img.resize((WIDTH, round(img.height * WIDTH / img.width)), Image.LANCZOS)
+    crop = (max(box[0] - pad, 0), max(box[1] - pad, 0), min(box[2] + pad, img.width), min(box[3] + pad, img.height))
+
+    def finish(im):
+        return im.crop(crop).resize((WIDTH, round((crop[3] - crop[1]) * WIDTH / (crop[2] - crop[0]))), Image.LANCZOS)
+
+    img = finish(img)
     img.save(DOCS / "title.png", optimize=True)
     img.save(DOCS / "title.webp", quality=92, method=6)
     for name in ("title.png", "title.webp"):
