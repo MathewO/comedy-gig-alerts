@@ -14,7 +14,8 @@ from .model import Event
 PAGE = "https://mathewo.github.io/comedy-gig-alerts/"
 MAX_LISTED = 50
 
-_D = theme.DARK  # email is always the dark look: clients can't switch themes the way the page does
+_C = theme.LIGHT  # email is always the light look: clients can't switch themes like the page does
+_F = theme.FONT
 
 
 def pending(events: list[Event], state_file: Path) -> tuple[list[Event], set[str]]:
@@ -37,61 +38,52 @@ def save(state_file: Path, keys: set[str]) -> None:
 def _row(e: Event) -> str:
     link = escape(e.url, quote=True)
     if e.until:
-        day, size, month = f"{e.start.day}-{e.until.day}", 19, e.until.strftime("%b")
+        day, size, month = f"{e.start.day}-{e.until.day}", 18, e.until.strftime("%b")
     else:
         day, size, month = str(e.start.day), 26, e.start.strftime("%b")
-    clock = "" if e.until else f" &nbsp; {e.start:%H:%M}"
-    price = f" &nbsp; <b style=\"color:{_D['ink']}\">{escape(e.price)}</b>" if e.price else ""
+    clock = "" if e.until else f" &nbsp;{e.start:%H:%M}"
+    price = f" &nbsp;<b style=\"color:{_C['ink']}\">{escape(e.price)}</b>" if e.price else ""
     pic = ""
     if e.image:
         pic = (
-            f'<td width="72" valign="middle" style="padding-left:12px"><a href="{link}">'
+            f'<td width="72" valign="top" style="padding-left:14px"><a href="{link}">'
             f'<img src="{escape(e.image, quote=True)}" width="72" alt="" '
-            'style="display:block;width:72px;border-radius:10px;border:0"></a></td>'
+            'style="display:block;width:72px;border-radius:6px;border:0"></a></td>'
         )
     return (
         '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" '
-        f'style="background:{_D["panel"]};border:2px solid {_D["line"]};border-radius:16px;margin-bottom:10px"><tr>'
-        '<td width="62" valign="middle" style="padding:10px 0 10px 10px">'
-        f'<table role="presentation" width="62" cellpadding="0" cellspacing="0"><tr>'
-        f'<td align="center" style="background:{theme.CHASSIS};border-radius:10px;padding:7px 0;color:{theme.LED};line-height:1">'
-        f'<div style="font-size:11px">{e.start:%a}</div>'
-        f'<div style="font-family:{theme.DISPLAY_FONT};font-size:{size}px;font-weight:800;margin:4px 0">{day}</div>'
-        f'<div style="font-size:11px">{month}</div></td></tr></table></td>'
-        f'<td valign="middle" style="padding:10px 4px 10px 14px">'
-        f'<a href="{link}" style="font-family:{theme.DISPLAY_FONT};font-size:17px;font-weight:600;line-height:1.25;'
-        f'color:{_D["ink"]};text-decoration:none">{escape(e.title)}</a>'
-        f'<div style="font-size:14px;color:{_D["dim"]};margin-top:3px">{escape(e.venue)}{clock}{price}</div>'
-        f'<table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:9px"><tr>'
-        f'<td style="background:{theme.LED};border-radius:999px"><a href="{link}" '
-        f'style="display:inline-block;padding:7px 16px;font-size:14px;font-weight:700;color:{theme.CHASSIS};'
-        'text-decoration:none">Tickets</a></td></tr></table></td>'
-        f"{pic}"
-        '<td width="10" style="font-size:0">&nbsp;</td></tr></table>'
+        f'style="border-top:1px solid {_C["line"]}"><tr>'
+        f'<td width="56" valign="top" style="padding:16px 0;font-size:12px;line-height:1.3;color:{_C["dim"]}">{e.start:%a}'
+        f'<div style="font-size:{size}px;font-weight:600;line-height:1.1;color:{_C["ink"]}">{day}</div>{month}</td>'
+        '<td valign="top" style="padding:16px 0">'
+        f'<a href="{link}" style="font-size:16px;font-weight:600;line-height:1.3;color:{_C["ink"]};text-decoration:none">{escape(e.title)}</a>'
+        f'<div style="font-size:14px;color:{_C["dim"]};margin-top:3px">{escape(e.venue)}{clock}{price}</div>'
+        f'<div style="margin-top:8px"><a href="{link}" style="font-size:14px;font-weight:600;color:{_C["ink"]};'
+        f'text-decoration:none;border-bottom:2px solid {theme.ACCENT}">Get tickets</a></div></td>'
+        f'{pic}</tr></table>'
     )
 
 
 def _html(new: list[Event], shown: list[Event]) -> str:
     n = len(new)
-    gigs = "gig" if n == 1 else "gigs"
+    gigs = "gig has" if n == 1 else "gigs have"
     more = ""
     if n > len(shown):
-        more = f'<p style="color:{_D["dim"]};margin:4px 0 14px">Plus {n - len(shown)} more on the full list.</p>'
-    return f"""<!doctype html><html><body style="margin:0;background:{_D['bg']};font-family:{theme.BODY_FONT};color:{_D['ink']}">
-<div style="display:none;max-height:0;overflow:hidden">{n} new comedy {gigs} in Sheffield, courtesy of your friendly family robot.</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:{_D['bg']}"><tr><td align="center" style="padding:24px 12px">
-<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%">
-<tr><td align="center" style="padding:6px 0 18px">{theme.robot_email()}</td></tr>
-<tr><td style="background:{_D['panel']};border:2px solid {_D['line']};border-radius:18px;padding:16px 20px">
-<div style="font-family:{theme.DISPLAY_FONT};font-size:24px;font-weight:800;line-height:1.15">Sheffield comedy</div>
-<p style="font-size:15px;line-height:1.55;margin:8px 0 0;color:{_D['dim']}"><b style="color:{_D['ink']}">Beep boop! {n} new {gigs}.</b>
-I scanned every comedy listing in Sheffield so you don't have to. I can't laugh myself (my sense of humour module is on back-order), so please go on my behalf.</p>
-</td></tr>
-<tr><td style="padding:18px 0 4px">{"".join(_row(e) for e in shown)}{more}</td></tr>
-<tr><td align="center" style="padding:6px 0 18px"><table role="presentation" cellpadding="0" cellspacing="0"><tr>
-<td style="background:{theme.LED};border-radius:999px"><a href="{PAGE}" style="display:inline-block;padding:12px 26px;font-weight:700;color:{theme.CHASSIS};text-decoration:none">See the full list</a></td></tr></table></td></tr>
-<tr><td align="center" style="padding:6px 12px 8px;font-size:13px;line-height:1.5;color:{_D['dim']}">
-Beep boop, {theme.BRAND}<br>Sent with a moderate amount of electricity. I do not eat, sleep or heckle.<br>I check the Sheffield listings every 4 hours.</td></tr>
+        more = f'<p style="color:{_C["dim"]};font-size:14px;margin:0 0 16px">Plus {n - len(shown)} more on the full list.</p>'
+    return f"""<!doctype html><html><body style="margin:0;background:{_C['bg']};font-family:{_F};color:{_C['ink']}">
+<div style="display:none;max-height:0;overflow:hidden">{n} new comedy {gigs} been listed in Sheffield.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:{_C['bg']}"><tr><td align="center" style="padding:40px 16px 32px">
+<table role="presentation" width="580" cellpadding="0" cellspacing="0" style="max-width:580px;width:100%;font-family:{_F}">
+<tr><td align="center" style="border-top:3px solid {theme.ACCENT};padding:36px 0 30px;font-size:26px;font-weight:700;letter-spacing:.16em;text-transform:uppercase">{theme.TITLE}</td></tr>
+<tr><td align="center" style="border-top:1px solid {_C['line']};padding:20px 0 26px;font-size:13px;letter-spacing:.12em;text-transform:uppercase">New gigs</td></tr>
+<tr><td style="font-size:16px;line-height:1.6;padding-bottom:22px">
+<p style="margin:0 0 14px">Hello,</p>
+<p style="margin:0">{n} new comedy {gigs} been listed in Sheffield. Details below.</p></td></tr>
+<tr><td>{"".join(_row(e) for e in shown)}<div style="border-top:1px solid {_C['line']};font-size:0">&nbsp;</div></td></tr>
+<tr><td style="padding-top:22px">{more}<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td align="center" style="background:{_C['ink']};border-radius:8px"><a href="{PAGE}" style="display:block;padding:16px 0;font-size:15px;color:#ffffff;text-decoration:none">See all gigs</a></td></tr></table></td></tr>
+<tr><td style="font-size:16px;line-height:1.6;padding:28px 0 8px">Kind regards,<br>{theme.BRAND}</td></tr>
+<tr><td style="font-size:12px;line-height:1.6;color:{_C['dim']};padding-top:8px">Sent automatically by {theme.BRAND}, which checks the Sheffield listings every four hours and has never once laughed at a joke.</td></tr>
 </table></td></tr></table></body></html>"""
 
 
@@ -102,13 +94,13 @@ def _message(new: list[Event], sender: str, recipients: list[str]) -> EmailMessa
         lines.append(f"...plus {len(new) - len(shown)} more: {PAGE}")
     n = len(new)
     msg = EmailMessage()
-    msg["Subject"] = f"{theme.BRAND} found {n} new comedy gig{'s' if n != 1 else ''} in Sheffield"
+    msg["Subject"] = f"{n} new comedy gig{'s' if n != 1 else ''} in Sheffield"
     msg["From"] = formataddr((theme.BRAND, sender))
     msg["To"] = ", ".join(recipients)
     msg.set_content(
-        "Beep boop, humans! It's O-BOT, your friendly family robot.\n\n"
+        f"{n} new comedy gig{'s have' if n != 1 else ' has'} been listed in Sheffield.\n\n"
         + "\n\n".join(lines)
-        + f"\n\nFull list: {PAGE}\n\nBeep boop,\nO-BOT"
+        + f"\n\nSee all gigs: {PAGE}\n\nKind regards,\n{theme.BRAND}"
     )
     msg.add_alternative(_html(new, shown), subtype="html")
     return msg

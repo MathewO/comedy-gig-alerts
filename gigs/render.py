@@ -1,51 +1,44 @@
 from datetime import datetime
 from html import escape
 from itertools import groupby
+from string import Template
 
 from . import theme
 from .model import Event
 
-_CSS = """
-:root{%(dark)s;--led:%(led)s;color-scheme:dark}
-:root[data-theme=light]{%(light)s;color-scheme:light}
+_CSS = Template("""
+:root{$light;--accent:$accent;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){$dark;color-scheme:dark}}
+:root[data-theme=dark]{$dark;color-scheme:dark}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 %(body)s}
-main{max-width:820px;margin:0 auto;padding:20px 16px 72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 $font;-webkit-font-smoothing:antialiased}
+body::before{content:"";display:block;height:3px;background:var(--accent)}
+main{max-width:760px;margin:0 auto;padding:0 20px 80px}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--led);outline-offset:2px}
-h1,h2,.act,.day{font-family:%(display)s}
-.top{display:flex;align-items:center;gap:18px;margin:8px 0 22px}
-.bot{flex:0 0 88px;width:88px;height:auto}
-.eyes{transform-origin:60px 60px}
-@media (prefers-reduced-motion:no-preference){.eyes{animation:blink .5s ease-in-out .8s 1}}
-@keyframes blink{50%%{transform:scaleY(.08)}}
-.bubble{position:relative;background:var(--panel);border:2px solid var(--line);border-radius:18px;padding:12px 16px}
-.bubble::before{content:"";position:absolute;left:-10px;top:50%%;margin-top:-9px;border:9px solid transparent;border-left:0;border-right-color:var(--line)}
-.bubble::after{content:"";position:absolute;left:-6px;top:50%%;margin-top:-7px;border:7px solid transparent;border-left:0;border-right-color:var(--panel)}
-h1{font-size:1.7rem;line-height:1.15;margin:0 0 4px;font-weight:800}
-.bubble p{margin:0;color:var(--dim)}
-.bubble b{color:var(--ink)}
-.tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
-.tools input,.tools select,.tools button{font:inherit;color:var(--ink);background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:9px 12px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+header{padding:52px 0 28px;border-bottom:1px solid var(--line)}
+.mark{margin:0;font-size:1.5rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.lede{margin:10px 0 0;color:var(--dim)}
+.tools{display:flex;gap:8px;flex-wrap:wrap;padding:20px 0 4px}
+.tools input,.tools select,.tools button{font:inherit;font-size:.95rem;color:var(--ink);background:var(--subtle);border:1px solid var(--line);border-radius:8px;padding:9px 12px}
 .tools input{flex:1 1 200px}
 .tools button{cursor:pointer}
-.tools button[aria-pressed=true]{background:var(--led);border-color:var(--led);color:%(chassis)s;font-weight:700}
-h2{position:sticky;top:0;z-index:2;margin:26px 0 8px;padding:8px 0;font-size:1.15rem;font-weight:600;color:var(--dim);background:var(--bg)}
-.gig{display:flex;align-items:center;gap:14px;padding:10px;margin-bottom:8px;background:var(--panel);border:2px solid var(--line);border-radius:16px;text-decoration:none}
-.gig:hover{border-color:var(--led)}
-.date{flex:0 0 62px;background:%(chassis)s;border-radius:10px;padding:6px 0 7px;text-align:center;color:var(--led);line-height:1}
-.date small{display:block;font-size:.72rem;letter-spacing:.04em;opacity:.85}
-.day{display:block;font-size:1.6rem;font-weight:800;margin:3px 0 2px}
-.day.run{font-size:1.15rem;margin:7px 0 6px}
-.pic{flex:0 0 76px;height:76px;border-radius:10px;background:var(--panel-hi) center/cover no-repeat}
-.body{flex:1;min-width:0}
-.act{display:block;font-size:1.1rem;font-weight:600;line-height:1.25}
-.meta{display:flex;flex-wrap:wrap;gap:2px 14px;color:var(--dim);font-size:.9rem;margin-top:2px}
+.tools button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+h2{position:sticky;top:0;z-index:2;margin:28px 0 0;padding:10px 0;font-size:.9rem;font-weight:600;color:var(--dim);background:var(--bg);border-bottom:1px solid var(--line)}
+.gig{display:grid;grid-template-columns:56px 72px 1fr auto;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.gig[hidden]{display:none}
+.date{font-size:.8rem;line-height:1.25;color:var(--dim)}
+.day{display:block;font-size:1.7rem;font-weight:600;line-height:1.1;color:var(--ink)}
+.day.run{font-size:1.2rem}
+.pic{width:72px;height:72px;border-radius:6px;background:var(--subtle) center/cover no-repeat}
+.act{display:block;font-weight:600;line-height:1.3}
+.gig:hover .act{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
+.meta{display:flex;flex-wrap:wrap;gap:0 14px;color:var(--dim);font-size:.9rem;margin-top:2px}
 .price{color:var(--ink);font-weight:600}
-.cta{flex:0 0 auto;background:var(--led);color:%(chassis)s;font-weight:700;border-radius:999px;padding:8px 16px}
-.empty{color:var(--dim);padding:28px 0}
-@media (max-width:560px){.cta{display:none}.pic{flex-basis:64px;height:64px}.bot{flex-basis:64px;width:64px}}
-"""
+.cta{font-size:.9rem;font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:1px}
+.empty{color:var(--dim);padding:28px 0 0;font-size:.9rem}
+@media (max-width:560px){.gig{grid-template-columns:48px 60px 1fr;gap:12px}.cta{display:none}.pic{width:60px;height:60px}}
+""")
 
 _JS = """
 const q=document.getElementById('q'),v=document.getElementById('v'),w=document.getElementById('w'),root=document.documentElement;
@@ -59,23 +52,20 @@ document.querySelectorAll('section').forEach(s=>{s.hidden=![...s.querySelectorAl
 document.getElementById('none').hidden=[...document.querySelectorAll('.gig')].some(g=>!g.hidden)}
 q.oninput=v.onchange=apply;
 w.onclick=()=>{w.setAttribute('aria-pressed',w.getAttribute('aria-pressed')!=='true');apply()};
-try{if(localStorage.theme==='light')root.dataset.theme='light'}catch(e){}
-document.getElementById('t').onclick=()=>{const l=root.dataset.theme!=='light';
-if(l)root.dataset.theme='light';else delete root.dataset.theme;
-try{localStorage.theme=l?'light':'dark'}catch(e){}};
+try{const s=localStorage.theme;if(s==='light'||s==='dark')root.dataset.theme=s}catch(e){}
+document.getElementById('t').onclick=()=>{
+const dark=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+root.dataset.theme=dark?'light':'dark';try{localStorage.theme=root.dataset.theme}catch(e){}};
 """
 
 
 def _row(e: Event) -> str:
     end = e.until or e.start
     if e.until:
-        day = f"{e.start.day}-{e.until.day}"
-        day_cls, month = "day run", e.until.strftime("%b")
+        day, day_cls, month = f"{e.start.day}-{e.until.day}", "day run", e.until.strftime("%b")
     else:
         day, day_cls, month = str(e.start.day), "day", e.start.strftime("%b")
-    pic = ""
-    if e.image:
-        pic = f'<span class="pic" style="background-image:url(&quot;{escape(e.image, quote=True)}&quot;)"></span>'
+    style = f' style="background-image:url(&quot;{escape(e.image, quote=True)}&quot;)"' if e.image else ""
     time = "" if e.until else f"<span>{e.start:%H:%M}</span>"
     price = f'<span class="price">{escape(e.price)}</span>' if e.price else ""
     search = escape((e.title + " " + e.venue).lower(), quote=True)
@@ -83,21 +73,19 @@ def _row(e: Event) -> str:
         f'<a class="gig" href="{escape(e.url, quote=True)}" target="_blank" rel="noopener" '
         f'data-t="{search}" data-v="{escape(e.venue, quote=True)}" '
         f'data-d="{e.start:%Y-%m-%d}" data-u="{end:%Y-%m-%d}">'
-        f'<span class="date"><small>{e.start:%a}</small><span class="{day_cls}">{day}</span><small>{month}</small></span>'
-        f'{pic}<span class="body"><span class="act">{escape(e.title)}</span>'
+        f'<span class="date">{e.start:%a}<span class="{day_cls}">{day}</span>{month}</span>'
+        f'<span class="pic"{style}></span>'
+        f'<span><span class="act">{escape(e.title)}</span>'
         f'<span class="meta"><span>{escape(e.venue)}</span>{time}{price}</span></span>'
         '<span class="cta">Tickets</span></a>'
     )
 
 
-def _bubble(events: list[Event]) -> str:
+def _lede(events: list[Event]) -> str:
     if not events:
-        return "<p>I can't find any gigs just now. I'll keep looking.</p>"
+        return "No upcoming gigs found just now."
     first = events[0]
-    return (
-        f"<p><b>Beep boop! {len(events)} gigs coming up.</b> "
-        f"First is {escape(first.title)} at {escape(first.venue)} on {first.when(False)}.</p>"
-    )
+    return f"{len(events)} upcoming gigs. Next: {escape(first.title)}, {first.when(False)}."
 
 
 def render(events: list[Event], generated: datetime) -> str:
@@ -107,28 +95,23 @@ def render(events: list[Event], generated: datetime) -> str:
         f"<section><h2>{month}</h2>{''.join(_row(e) for e in group)}</section>"
         for month, group in groupby(events, key=lambda e: e.start.strftime("%B %Y"))
     ]
-    css = _CSS % {
-        "dark": theme.css_vars(theme.DARK),
-        "light": theme.css_vars(theme.LIGHT),
-        "led": theme.LED,
-        "chassis": theme.CHASSIS,
-        "body": theme.BODY_FONT,
-        "display": theme.DISPLAY_FONT,
-    }
+    css = _CSS.substitute(
+        light=theme.css_vars(theme.LIGHT),
+        dark=theme.css_vars(theme.DARK),
+        accent=theme.ACCENT,
+        font=theme.FONT,
+    )
     return (
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
-        "<title>Sheffield comedy</title>"
-        '<link rel="preconnect" href="https://fonts.googleapis.com">'
-        '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-        f'<link rel="stylesheet" href="{theme.FONT_LINK}"><style>{css}</style></head><body><main>'
-        f'<div class="top">{theme.robot_svg()}<div class="bubble"><h1>Sheffield comedy</h1>{_bubble(events)}</div></div>'
+        f"<title>{theme.TITLE}</title><style>{css}</style></head><body><main>"
+        f'<header><h1 class="mark">{theme.TITLE}</h1><p class="lede">{_lede(events)}</p></header>'
         '<div class="tools"><input id="q" type="search" placeholder="Search act or venue" aria-label="Search act or venue">'
         f'<select id="v" aria-label="Venue"><option value="">All venues</option>{options}</select>'
         '<button id="w" type="button" aria-pressed="false">This weekend</button>'
-        '<button id="t" type="button" aria-label="Switch between dark and light">Theme</button></div>'
+        '<button id="t" type="button" aria-label="Switch between light and dark">Theme</button></div>'
         f"{''.join(sections)}"
         '<p id="none" class="empty" hidden>No gigs match. Try a different search or venue.</p>'
-        f'<p class="empty">Last changed {generated:%d %b %Y, %H:%M}. O-BOT checks every 4 hours.</p>'
+        f'<p class="empty">Updated {generated:%d %b %Y, %H:%M}. Checked every four hours by {theme.BRAND}.</p>'
         f"<script>{_JS}</script></main></body></html>"
     )

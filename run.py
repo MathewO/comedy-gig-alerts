@@ -43,7 +43,7 @@ def collect() -> tuple[list[Event], dict[str, str]]:
 
 
 def _stable(page: str) -> str:
-    return re.sub(r"Last changed .*? O-BOT checks", "O-BOT checks", page)
+    return re.sub(r"Updated .*? Checked", "Checked", page)
 
 
 def snapshot(events: list[Event]) -> list[dict]:
