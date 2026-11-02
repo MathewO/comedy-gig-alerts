@@ -38,7 +38,7 @@ def collect() -> tuple[list[Event], dict[str, str]]:
 
 def snapshot(events: list[Event]) -> list[dict]:
     return [
-        {"title": e.title, "start": e.start.isoformat(), "venue": e.venue, "url": e.url, "image": e.image}
+        {"title": e.title, "start": e.start.isoformat(), "venue": e.venue, "url": e.url, "image": e.image, "until": e.until.isoformat() if e.until else None}
         for e in events
     ]
 

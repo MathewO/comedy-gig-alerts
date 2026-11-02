@@ -36,7 +36,7 @@ _ACCENT = "#c2410c"
 
 
 def _card(e: Event) -> str:
-    when = e.start.strftime("%A %d %B %Y, %H:%M").replace(" 0", " ")
+    when = e.when()
     link = escape(e.url, quote=True)
     pic = ""
     if e.image:
@@ -94,7 +94,7 @@ I do not eat, sleep or heckle. Checking the Sheffield listings every 4 hours.</t
 def _message(new: list[Event], sender: str, recipients: list[str]) -> EmailMessage:
     shown = new[:MAX_LISTED]
     lines = [
-        f"{e.title}\n  {e.start.strftime('%a %d %b %Y, %H:%M')} - {e.venue}\n  {e.url}"
+        f"{e.title}\n  {e.when()} - {e.venue}\n  {e.url}"
         for e in shown
     ]
     if len(new) > len(shown):

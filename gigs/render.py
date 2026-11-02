@@ -44,7 +44,7 @@ try{localStorage.theme=l?'light':'dark'}catch(e){}};
 
 
 def _card(e: Event) -> str:
-    when = e.start.strftime("%a %d %b %Y, %H:%M").replace(" 0", " ")
+    when = e.when()
     pic = f' style="background-image:url(\'{escape(e.image, quote=True)}\')"' if e.image else ""
     price = f' · <span class="price">{escape(e.price)}</span>' if e.price else ""
     return (
