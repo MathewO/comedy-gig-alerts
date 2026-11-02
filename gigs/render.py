@@ -8,20 +8,19 @@ from .model import Event
 
 _CSS = Template("""
 @font-face{font-family:"Bebas Neue";src:url(fonts/BebasNeue.ttf) format("truetype");font-display:swap}
-:root{$light;--accent:$accent;color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){$dark;color-scheme:dark}}
-:root[data-theme=dark]{$dark;color-scheme:dark}
+:root{$dark;--accent:$accent;color-scheme:dark}
+:root[data-theme=light]{$light;color-scheme:light}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 $font;-webkit-font-smoothing:antialiased}
 body::before{content:"";display:block;height:3px;background:var(--accent)}
 main{max-width:1000px;margin:0 auto;padding:0 24px 80px}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-header{text-align:center;padding:64px 0 32px}
-.brand{display:inline-block;--m:clamp(2rem,16vw,4.6rem)}
-.mark{margin:0;font-family:"Bebas Neue",Impact,$font;font-size:var(--m);font-weight:400;letter-spacing:.07em;line-height:1;text-transform:uppercase}
-.lede{width:0;min-width:100%;margin:16px 0 0;color:var(--dim);font-size:calc(var(--m)*.215);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tools{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:8px 0 0}
+header{text-align:center;padding:31px 0 12px}
+.brand{display:inline-block;--m:clamp(2rem,20vw,4.6rem)}
+.mark{margin:0;font-family:"Bebas Neue",Impact,$font;font-size:var(--m);font-weight:400;letter-spacing:0;line-height:1;text-transform:uppercase}
+.lede{width:0;min-width:100%;margin:calc(var(--m)*-.15) 0 0;color:var(--dim);font-size:calc(var(--m)*.18);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tools{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:4px 0 0}
 .tools input,.tools select,.tools button{font:inherit;font-size:.95rem;color:var(--ink);background:var(--subtle);border:1px solid var(--line);border-radius:8px;padding:9px 14px}
 .tools input{flex:0 1 260px}
 .tools button{cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:42px;padding:0}
@@ -38,7 +37,7 @@ h2{margin:44px 0 0;font-size:1rem;font-weight:600;text-align:center;color:var(--
 .price{color:var(--ink);font-weight:600}
 .cta{display:inline-block;margin-top:10px;font-size:.9rem;font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:1px}
 .empty{color:var(--dim);padding:32px 0 0;text-align:center}
-@media (max-width:640px){header{padding:44px 0 26px}main{padding:0 16px 64px}
+@media (max-width:640px){header{padding:20px 0 10px}main{padding:0 16px 64px}
 .grid{grid-template-columns:repeat(2,1fr);gap:28px 14px}.act{font-size:1rem}.meta{font-size:.82rem}}
 """)
 
@@ -49,14 +48,14 @@ document.querySelectorAll('.gig').forEach(g=>{g.hidden=!((!t||g.dataset.t.includ
 document.querySelectorAll('section').forEach(s=>{s.hidden=![...s.querySelectorAll('.gig')].some(g=>!g.hidden)});
 document.getElementById('none').hidden=[...document.querySelectorAll('.gig')].some(g=>!g.hidden)}
 q.oninput=v.onchange=apply;
-try{const s=localStorage.theme;if(s==='light'||s==='dark')root.dataset.theme=s}catch(e){}
-const tb=document.getElementById('t'),mq=matchMedia('(prefers-color-scheme:dark)');
+try{if(localStorage.theme==='light')root.dataset.theme='light'}catch(e){}
+const tb=document.getElementById('t');
 const SUN='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
 const MOON='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
-const isDark=()=>root.dataset.theme?root.dataset.theme==='dark':mq.matches;
+const isDark=()=>root.dataset.theme!=='light';
 function paint(){const d=isDark();tb.innerHTML=d?SUN:MOON;tb.setAttribute('aria-label',d?'Switch to light theme':'Switch to dark theme')}
-tb.onclick=()=>{root.dataset.theme=isDark()?'light':'dark';try{localStorage.theme=root.dataset.theme}catch(e){}paint()};
-mq.onchange=paint;paint();
+tb.onclick=()=>{if(isDark())root.dataset.theme='light';else delete root.dataset.theme;try{localStorage.theme=isDark()?'dark':'light'}catch(e){}paint()};
+paint();
 """
 
 

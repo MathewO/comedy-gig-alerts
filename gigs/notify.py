@@ -15,7 +15,7 @@ from .render import when_text
 PAGE = "https://mathewo.github.io/comedy-gig-alerts/"
 MAX_LISTED = 50
 
-_C = theme.LIGHT  # email is always the light look: clients can't switch themes like the page does
+_C = theme.DARK  # dark like the page's default; mail apps can't switch themes, so the email is always dark
 _F = theme.FONT
 
 
@@ -64,20 +64,18 @@ def _html(new: list[Event], shown: list[Event]) -> str:
     more = ""
     if n > len(shown):
         more = f'<p style="color:{_C["dim"]};font-size:14px;margin:0 0 16px">Plus {n - len(shown)} more on the full list.</p>'
-    return f"""<!doctype html><html><body style="margin:0;background:{_C['bg']};font-family:{_F};color:{_C['ink']}">
+    return f"""<!doctype html><html><head><meta name="color-scheme" content="dark"><meta name="supported-color-schemes" content="dark"></head><body style="margin:0;background:{_C['bg']};font-family:{_F};color:{_C['ink']}">
 <div style="display:none;max-height:0;overflow:hidden">{n} new comedy {gigs} been listed in Sheffield.</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:{_C['bg']}"><tr><td align="center" style="padding:40px 16px 32px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td style="height:3px;line-height:3px;font-size:0;background:{theme.ACCENT}">&nbsp;</td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:{_C['bg']}"><tr><td align="center" style="padding:28px 16px 32px">
 <table role="presentation" width="580" cellpadding="0" cellspacing="0" style="max-width:580px;width:100%;font-family:{_F}">
-<tr><td align="center" style="border-top:3px solid {theme.ACCENT};padding:16px 0 8px"><img src="{PAGE}wordmark.png" width="580" alt="{theme.TITLE}" style="display:block;width:100%;max-width:580px;height:auto;border:0;font-size:22px;font-weight:700;letter-spacing:.08em;color:{_C['ink']}"></td></tr>
-<tr><td align="center" style="border-top:1px solid {_C['line']};padding:20px 0 26px;font-size:13px;letter-spacing:.12em;text-transform:uppercase">New gigs</td></tr>
-<tr><td style="font-size:16px;line-height:1.6;padding-bottom:22px">
-<p style="margin:0 0 14px">Hello,</p>
-<p style="margin:0">{n} new comedy {gigs} been listed in Sheffield. Details below.</p></td></tr>
+<tr><td align="center" style="padding:0"><img src="{PAGE}wordmark.png" width="580" alt="{theme.TITLE}" style="display:block;width:100%;max-width:580px;height:auto;border:0;font-size:22px;font-weight:700;letter-spacing:.08em;color:{_C['ink']}"></td></tr>
+<tr><td align="center" style="font-size:16px;line-height:1.6;padding:0 0 24px;text-align:center">
+<p style="margin:0">Hello, {n} new comedy {gigs} been listed in Sheffield. Details below.</p></td></tr>
 <tr><td>{"".join(_row(e) for e in shown)}<div style="border-top:1px solid {_C['line']};font-size:0">&nbsp;</div></td></tr>
 <tr><td style="padding-top:22px">{more}<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-<td align="center" style="background:{_C['ink']};border-radius:8px"><a href="{PAGE}" style="display:block;padding:16px 0;font-size:15px;color:#ffffff;text-decoration:none">See all gigs</a></td></tr></table></td></tr>
-<tr><td style="font-size:16px;line-height:1.6;padding:28px 0 8px">Kind regards,<br>{theme.BRAND}</td></tr>
-<tr><td style="font-size:12px;line-height:1.6;color:{_C['dim']};padding-top:8px">Sent automatically by {theme.BRAND}, which checks the Sheffield listings every four hours and has never once laughed at a joke.</td></tr>
+<td align="center" style="background:{_C['ink']};border-radius:8px"><a href="{PAGE}" style="display:block;padding:16px 0;font-size:15px;font-weight:600;color:{_C['bg']};text-decoration:none">See all gigs</a></td></tr></table></td></tr>
+<tr><td style="font-size:12px;line-height:1.6;color:{_C['dim']};padding-top:28px">Sent automatically by {theme.BRAND}, which checks the Sheffield listings every four hours and has never once laughed at a joke.</td></tr>
 </table></td></tr></table></body></html>"""
 
 
@@ -94,7 +92,7 @@ def _message(new: list[Event], sender: str, recipients: list[str]) -> EmailMessa
     msg.set_content(
         f"{n} new comedy gig{'s have' if n != 1 else ' has'} been listed in Sheffield.\n\n"
         + "\n\n".join(lines)
-        + f"\n\nSee all gigs: {PAGE}\n\nKind regards,\n{theme.BRAND}"
+        + f"\n\nSee all gigs: {PAGE}"
     )
     msg.add_alternative(_html(new, shown), subtype="html")
     return msg
