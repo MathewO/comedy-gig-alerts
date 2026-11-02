@@ -24,7 +24,7 @@ class Event:
 
     def key(self) -> tuple[str, str, str]:
         """Identity used to merge the same gig seen by different sources."""
-        act = re.sub(r"[^a-z0-9]+", " ", self.title.lower().split(":")[0]).strip()
+        act = re.sub(r"[^a-z0-9]+", " ", re.split(r":|\s[-–]\s", self.title.lower())[0]).strip()
         part = "matinee" if self.start.hour < 17 else "evening"
         return (self.start.date().isoformat(), act, part)
 

@@ -14,6 +14,10 @@ DOCS = Path(__file__).parent / "docs"
 STATE = Path(__file__).parent / "state" / "alerted.json"
 
 
+# Sources spell some venues differently; show each venue once.
+VENUE_ALIASES = {"Octagon": "Octagon Centre"}
+
+
 def collect() -> tuple[list[Event], dict[str, str]]:
     merged: dict[tuple, Event] = {}
     report: dict[str, str] = {}
@@ -27,6 +31,7 @@ def collect() -> tuple[list[Event], dict[str, str]]:
             continue
         report[info.name] = f"{len(found)} events"
         for e in found:
+            e.venue = VENUE_ALIASES.get(e.venue, e.venue)
             have = merged.setdefault(e.key(), e)
             # Earlier source wins; fill any gaps from later ones.
             have.image = have.image or e.image

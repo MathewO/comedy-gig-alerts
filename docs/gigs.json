@@ -80,14 +80,6 @@
   "until": null
  },
  {
-  "title": "Russell Howard: Arches Bar Champagne Experience",
-  "start": "2026-11-08T19:30:00",
-  "venue": "Sheffield City Hall Oval Hall",
-  "url": "https://www.ticketmaster.co.uk/russell-howard-arches-bar-experience-sheffield-08-11-2026/event/3500633207013E38",
-  "image": "https://s1.ticketm.net/dam/a/e28/ce6f89d6-2525-4f57-945a-91914f078e28_SOURCE",
-  "until": null
- },
- {
   "title": "The Dark Room",
   "start": "2026-11-11T18:30:00",
   "venue": "Foundry",
@@ -109,6 +101,14 @@
   "venue": "Sheffield City Hall Memorial Hall",
   "url": "https://www.ticketmaster.co.uk/funny-business-sheffield-12-11-2026/event/3500648EE71D54EF",
   "image": "https://s1.ticketm.net/dam/e/f74/30872260-5b24-40bc-91ff-4f2bacb03f74_SOURCE",
+  "until": null
+ },
+ {
+  "title": "Nish Kumar: Angry Humour From a Really Nice Guy",
+  "start": "2026-11-13T19:30:00",
+  "venue": "Octagon Centre",
+  "url": "https://performancevenues.group.shef.ac.uk/our-events/nish-kumar-angry-humour-from-a-really-nice-guy/",
+  "image": "https://performancevenues.group.shef.ac.uk/wp-content/uploads/2026/01/NISH-KUMAR-AHFARNG-1080_1080-COPYRIGHT-MATT-STRONGE.jpg",
   "until": null
  },
  {
@@ -288,17 +288,9 @@
   "until": null
  },
  {
-  "title": "Chris Ramsey - Here, Man!",
-  "start": "2026-12-04T19:30:00",
-  "venue": "Sheffield City Hall Oval Hall",
-  "url": "https://www.ticketmaster.co.uk/chris-ramsey-here-man-sheffield-04-12-2026/event/3500647FA2DC5F4F",
-  "image": "https://s1.ticketm.net/dam/a/e62/6336ec3f-3ab8-4b97-9d7f-2cee55695e62_SOURCE",
-  "until": null
- },
- {
   "title": "Live at Christmas: Sara Pascoe & Fern Brady",
   "start": "2026-12-18T19:30:00",
-  "venue": "Octagon",
+  "venue": "Octagon Centre",
   "url": "https://www.ticketmaster.co.uk/live-at-christmas-sara-pascoe-fern-sheffield-18-12-2026/event/1F0064F0B1C553CC",
   "image": "https://s1.ticketm.net/dam/a/a07/736ee1ba-52d2-4259-9a7f-22a6952cfa07_SOURCE",
   "until": null
@@ -384,11 +376,11 @@
   "until": "2027-02-05T20:00:00"
  },
  {
-  "title": "Scott Bennett - Stuff",
+  "title": "Scott Bennett: Stuff",
   "start": "2027-02-05T19:30:00",
-  "venue": "Octagon",
-  "url": "https://www.ticketmaster.co.uk/scott-bennett-stuff-sheffield-05-02-2027/event/1F00634F44B30D0A",
-  "image": "https://s1.ticketm.net/dam/a/9e4/f341923c-97a2-4c7e-842f-704b960a09e4_SOURCE",
+  "venue": "Octagon Centre",
+  "url": "https://performancevenues.group.shef.ac.uk/our-events/scott-bennett-stuff/",
+  "image": "https://performancevenues.group.shef.ac.uk/wp-content/uploads/2026/03/scott-bennett-1.png",
   "until": null
  },
  {
@@ -496,11 +488,11 @@
   "until": null
  },
  {
-  "title": "Maisie Adam: Whatsherface",
+  "title": "Maisie Adam – Whatsherface",
   "start": "2027-03-09T19:30:00",
-  "venue": "Octagon",
-  "url": "https://www.ticketmaster.co.uk/maisie-adam-whatsherface-sheffield-09-03-2027/event/1F006463A31325B3",
-  "image": "https://s1.ticketm.net/dam/a/ca1/e36c4d64-bdcc-4ca2-bb2f-9572c4ea6ca1_SOURCE",
+  "venue": "Octagon Centre",
+  "url": "https://performancevenues.group.shef.ac.uk/our-events/maisie-adam-whatsherface/",
+  "image": "https://performancevenues.group.shef.ac.uk/wp-content/uploads/2026/03/whatsherface.png",
   "until": null
  },
  {
@@ -564,14 +556,6 @@
   "start": "2027-04-09T19:00:00",
   "venue": "Sheffield City Hall Oval Hall",
   "url": "https://www.ticketmaster.co.uk/mo-gilligan-arches-bar-experience-sheffield-09-04-2027/event/3500648FA0901DBE",
-  "image": "https://s1.ticketm.net/dam/a/37b/afe136a5-5336-4425-8967-157def9d637b_SOURCE",
-  "until": null
- },
- {
-  "title": "Mo Gilligan - the Mo You Know",
-  "start": "2027-04-09T19:00:00",
-  "venue": "Sheffield City Hall Oval Hall",
-  "url": "https://www.ticketmaster.co.uk/mo-gilligan-the-mo-you-know-sheffield-09-04-2027/event/3500648EE24051AF",
   "image": "https://s1.ticketm.net/dam/a/37b/afe136a5-5336-4425-8967-157def9d637b_SOURCE",
   "until": null
  },
@@ -698,7 +682,7 @@
  {
   "title": "Scott Bennett - Stuff",
   "start": "2027-05-22T18:30:00",
-  "venue": "Octagon",
+  "venue": "Octagon Centre",
   "url": "https://www.ticketmaster.co.uk/scott-bennett-stuff-sheffield-22-05-2027/event/1F0064D2B369CE39",
   "image": "https://s1.ticketm.net/dam/a/9e4/f341923c-97a2-4c7e-842f-704b960a09e4_SOURCE",
   "until": null
@@ -836,14 +820,6 @@
   "start": "2027-11-27T19:30:00",
   "venue": "Sheffield City Hall Oval Hall",
   "url": "https://www.ticketmaster.co.uk/alan-carr-have-i-said-too-sheffield-27-11-2027/event/3500637D9EBA5722",
-  "image": "https://s1.ticketm.net/dam/a/e93/e7f25bb6-2437-4b1e-b610-e9d0e4775e93_SOURCE",
-  "until": null
- },
- {
-  "title": "Alan Carr - Arches Bar Champagne Experience",
-  "start": "2027-11-27T19:30:00",
-  "venue": "Sheffield City Hall Oval Hall",
-  "url": "https://www.ticketmaster.co.uk/alan-carr-arches-bar-experience-sheffield-27-11-2027/event/35006381C6ED8B31",
   "image": "https://s1.ticketm.net/dam/a/e93/e7f25bb6-2437-4b1e-b610-e9d0e4775e93_SOURCE",
   "until": null
  }

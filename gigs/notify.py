@@ -38,6 +38,7 @@ _ACCENT = "#c2410c"
 def _card(e: Event) -> str:
     when = e.when()
     link = escape(e.url, quote=True)
+    price = f" &middot; {escape(e.price)}" if e.price else ""
     pic = ""
     if e.image:
         pic = (
@@ -51,7 +52,7 @@ def _card(e: Event) -> str:
         f'{pic}<td valign="top">'
         f'<div style="font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:{_ACCENT};font-weight:700">{when}</div>'
         f'<div style="font-size:18px;font-weight:700;margin:3px 0"><a href="{link}" style="color:#1c1b1a;text-decoration:none">{escape(e.title)}</a></div>'
-        f'<div style="font-size:14px;color:#6b665f">{escape(e.venue)}</div>'
+        f'<div style="font-size:14px;color:#6b665f">{escape(e.venue)}{price}</div>'
         f'<div style="margin-top:8px"><a href="{link}" style="font-size:14px;color:{_ACCENT};font-weight:600">Get tickets &rarr;</a></div>'
         "</td></tr></table>"
     )
