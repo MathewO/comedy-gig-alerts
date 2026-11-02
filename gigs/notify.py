@@ -10,6 +10,7 @@ from pathlib import Path
 
 from . import theme
 from .model import Event
+from .render import when_text
 
 PAGE = "https://mathewo.github.io/comedy-gig-alerts/"
 MAX_LISTED = 50
@@ -37,30 +38,23 @@ def save(state_file: Path, keys: set[str]) -> None:
 
 def _row(e: Event) -> str:
     link = escape(e.url, quote=True)
-    if e.until:
-        day, size, month = f"{e.start.day}-{e.until.day}", 18, e.until.strftime("%b")
-    else:
-        day, size, month = str(e.start.day), 26, e.start.strftime("%b")
-    clock = "" if e.until else f" &nbsp;{e.start:%H:%M}"
     price = f" &nbsp;<b style=\"color:{_C['ink']}\">{escape(e.price)}</b>" if e.price else ""
     pic = ""
     if e.image:
         pic = (
-            f'<td width="72" valign="top" style="padding-left:14px"><a href="{link}">'
-            f'<img src="{escape(e.image, quote=True)}" width="72" alt="" '
-            'style="display:block;width:72px;border-radius:6px;border:0"></a></td>'
+            f'<td width="220" valign="top" style="padding:20px 20px 20px 0"><a href="{link}">'
+            f'<img src="{escape(e.image, quote=True)}" width="220" alt="" '
+            'style="display:block;width:220px;max-width:100%;height:auto;border-radius:6px;border:0"></a></td>'
         )
     return (
         '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" '
-        f'style="border-top:1px solid {_C["line"]}"><tr>'
-        f'<td width="56" valign="top" style="padding:16px 0;font-size:12px;line-height:1.3;color:{_C["dim"]}">{e.start:%a}'
-        f'<div style="font-size:{size}px;font-weight:600;line-height:1.1;color:{_C["ink"]}">{day}</div>{month}</td>'
-        '<td valign="top" style="padding:16px 0">'
-        f'<a href="{link}" style="font-size:16px;font-weight:600;line-height:1.3;color:{_C["ink"]};text-decoration:none">{escape(e.title)}</a>'
-        f'<div style="font-size:14px;color:{_C["dim"]};margin-top:3px">{escape(e.venue)}{clock}{price}</div>'
-        f'<div style="margin-top:8px"><a href="{link}" style="font-size:14px;font-weight:600;color:{_C["ink"]};'
-        f'text-decoration:none;border-bottom:2px solid {theme.ACCENT}">Get tickets</a></div></td>'
-        f'{pic}</tr></table>'
+        f'style="border-top:1px solid {_C["line"]}"><tr>{pic}'
+        '<td valign="middle" style="padding:20px 0">'
+        f'<div style="font-size:13px;color:{_C["dim"]}">{when_text(e)}</div>'
+        f'<a href="{link}" style="display:block;margin-top:4px;font-size:18px;font-weight:600;line-height:1.3;color:{_C["ink"]};text-decoration:none">{escape(e.title)}</a>'
+        f'<div style="font-size:14px;color:{_C["dim"]};margin-top:4px">{escape(e.venue)}{price}</div>'
+        f'<div style="margin-top:12px"><a href="{link}" style="font-size:14px;font-weight:600;color:{_C["ink"]};'
+        f'text-decoration:none;border-bottom:2px solid {theme.ACCENT}">Get tickets</a></div></td></tr></table>'
     )
 
 

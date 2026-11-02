@@ -3,6 +3,16 @@ from dataclasses import dataclass
 from datetime import datetime
 
 
+def uk_now() -> datetime:
+    """Current UK clock time (gig times are UK local; the Actions runner is on UTC)."""
+    try:
+        from zoneinfo import ZoneInfo
+
+        return datetime.now(ZoneInfo("Europe/London")).replace(tzinfo=None)
+    except Exception:  # no tz database (e.g. some Windows installs): assume the machine is on UK time
+        return datetime.now()
+
+
 @dataclass
 class Event:
     title: str

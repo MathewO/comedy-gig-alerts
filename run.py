@@ -2,13 +2,11 @@
 import importlib
 import json
 import pkgutil
-import re
 import sys
-from datetime import datetime
 from pathlib import Path
 
 from gigs import notify, sources
-from gigs.model import Event
+from gigs.model import Event, uk_now
 from gigs.render import render
 
 DOCS = Path(__file__).parent / "docs"
@@ -37,13 +35,9 @@ def collect() -> tuple[list[Event], dict[str, str]]:
             # Earlier source wins; fill any gaps from later ones.
             have.image = have.image or e.image
             have.price = have.price or e.price
-    now = datetime.now()
+    now = uk_now()
     upcoming = sorted((e for e in merged.values() if e.start >= now.replace(hour=0, minute=0)), key=lambda e: e.start)
     return upcoming, report
-
-
-def _stable(page: str) -> str:
-    return re.sub(r"Updated .*? Checked", "Checked", page)
 
 
 def snapshot(events: list[Event]) -> list[dict]:
@@ -77,18 +71,11 @@ def main() -> int:
         return 1
     DOCS.mkdir(exist_ok=True)
     alert(events)
-    data_file, page_file = DOCS / "gigs.json", DOCS / "index.html"
-    new = snapshot(events)
-    old = json.loads(data_file.read_text(encoding="utf-8")) if data_file.exists() else None
-    html = render(events, datetime.now())
-    # Ignore the "Last changed" stamp so a template-only edit still rewrites the page.
-    same_page = page_file.exists() and _stable(html) == _stable(page_file.read_text(encoding="utf-8"))
-    if new == old and same_page:
-        print(f"{len(events)} gigs, unchanged - nothing written")
-        return 0
-    data_file.write_text(json.dumps(new, indent=1, ensure_ascii=False), encoding="utf-8")
-    page_file.write_text(html, encoding="utf-8")
-    print(f"{len(events)} gigs, changed - wrote docs/index.html")
+    # Written every run so the page's "last checked" time is true; git only
+    # commits when something differs, which is every run because of that stamp.
+    (DOCS / "gigs.json").write_text(json.dumps(snapshot(events), indent=1, ensure_ascii=False), encoding="utf-8")
+    (DOCS / "index.html").write_text(render(events, uk_now()), encoding="utf-8")
+    print(f"{len(events)} gigs, wrote docs/index.html")
     return 0
 
 
