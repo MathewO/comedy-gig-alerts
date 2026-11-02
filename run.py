@@ -6,11 +6,12 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from gigs import sources
+from gigs import notify, sources
 from gigs.model import Event
 from gigs.render import render
 
 DOCS = Path(__file__).parent / "docs"
+STATE = Path(__file__).parent / "state" / "alerted.json"
 
 
 def collect() -> tuple[list[Event], dict[str, str]]:
@@ -42,6 +43,22 @@ def snapshot(events: list[Event]) -> list[dict]:
     ]
 
 
+def alert(events: list[Event]) -> None:
+    """Email new gigs. Alerted keys are saved only after a successful send."""
+    new, keys = notify.pending(events, STATE)
+    if not new:
+        notify.save(STATE, keys)
+        return
+    try:
+        sent = notify.send(new)
+    except Exception as exc:  # leave state alone so the next run retries
+        print(f"ALERT FAILED, will retry next run: {exc}")
+        return
+    print(f"{len(new)} new gigs, alert {'sent' if sent else 'skipped'}")
+    if sent:
+        notify.save(STATE, keys)
+
+
 def main() -> int:
     events, report = collect()
     for name, result in report.items():
@@ -49,6 +66,7 @@ def main() -> int:
     if all(r.startswith("FAILED") for r in report.values()):
         return 1
     DOCS.mkdir(exist_ok=True)
+    alert(events)
     data_file = DOCS / "gigs.json"
     new = snapshot(events)
     old = json.loads(data_file.read_text(encoding="utf-8")) if data_file.exists() else None

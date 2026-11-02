@@ -18,3 +18,6 @@ class Event:
         act = re.sub(r"[^a-z0-9]+", " ", self.title.lower().split(":")[0]).strip()
         part = "matinee" if self.start.hour < 17 else "evening"
         return (self.start.date().isoformat(), act, part)
+
+    def key_str(self) -> str:
+        return "|".join(self.key())
