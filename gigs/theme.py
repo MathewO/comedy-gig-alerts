@@ -7,25 +7,26 @@ Colours are named once here. The page uses them as CSS variables; the email
 BRAND = "O-BOT"
 TAGLINE = "The friendly family robot"
 
-# Always the same in both themes: the robot's eyes and the little LED date panels.
-LED = "#FFD23F"
-CHASSIS = "#17314A"  # deep steel blue; also the page background in the dark theme
+# Sheffield's orange, black and steel grey. Always the same in both themes:
+# the robot's eyes, the buttons and the little date panels.
+LED = "#F47B20"      # bright works-orange
+CHASSIS = "#141312"  # forge black; text on orange, date panels, robot pupils
 
 DARK = {
-    "bg": CHASSIS,
-    "panel": "#1F4262",
-    "panel-hi": "#285379",
-    "line": "#3B6286",
-    "ink": "#F2F7FB",
-    "dim": "#A9C3DA",
+    "bg": "#1C1B1A",
+    "panel": "#292725",
+    "panel-hi": "#38352F",
+    "line": "#524D46",
+    "ink": "#F6F2EB",
+    "dim": "#B8B1A6",
 }
 LIGHT = {
-    "bg": "#D9E9F6",
+    "bg": "#E3E6E8",
     "panel": "#FFFFFF",
-    "panel-hi": "#EEF5FB",
-    "line": "#B5CDE2",
-    "ink": "#14304A",
-    "dim": "#4F6B84",
+    "panel-hi": "#D3D8DC",
+    "line": "#B7BEC4",
+    "ink": "#1C1B1A",
+    "dim": "#565C62",
 }
 
 DISPLAY_FONT = "'Baloo 2','Arial Rounded MT Bold','Trebuchet MS',Verdana,sans-serif"
