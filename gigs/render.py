@@ -39,7 +39,7 @@ h2{margin:44px 0 0;font-size:1rem;font-weight:600;text-align:center;color:var(--
 .empty{color:var(--dim);padding:32px 0 0;text-align:center}
 @media (max-width:640px){header{padding:20px 0 10px}main{padding:0 16px 64px}
 .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px}
-.tools{display:grid;grid-template-columns:minmax(0,1fr) 42px}.tools input{grid-column:1/-1;width:100%}.tools select{width:100%;min-width:0}.act{font-size:1rem}.meta{font-size:.82rem}}
+.tools{display:grid;grid-template-columns:minmax(0,1fr) 42px;width:75vw;margin-inline:auto}.tools input{grid-column:1/-1;width:100%}.tools select{width:100%;min-width:0}.act{font-size:1rem}.meta{font-size:.82rem}}
 """)
 
 _JS = """
