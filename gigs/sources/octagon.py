@@ -21,7 +21,7 @@ _LD = re.compile(r'<script[^>]*application/ld\+json[^>]*>(.*?)</script>', re.S)
 
 def _acts() -> list[str]:
     lines = ACTS_FILE.read_text(encoding="utf-8").splitlines()
-    return [l.strip().lower() for l in lines if l.strip() and not l.startswith("#")]
+    return [l.strip().lower() for l in lines if l.strip() and not l.startswith(("#", "-"))]
 
 
 def _starts(page: str) -> dict[str, str]:

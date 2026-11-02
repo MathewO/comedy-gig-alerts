@@ -70,7 +70,7 @@ paint();
 def when_text(e: Event) -> str:
     if e.until:
         return f"{e.start:%a} {e.start.day} - {e.until:%a} {e.until.day} {e.until:%b}"
-    return f"{e.start:%a} {e.start.day} {e.start:%b}, {e.start:%H:%M}"
+    return f"{e.start:%a} {e.start.day} {e.start:%b}, {e.start:%H:%M}" if e.timed else f"{e.start:%a} {e.start.day} {e.start:%b}"
 
 
 def _card(e: Event) -> str:

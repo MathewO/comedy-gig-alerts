@@ -48,6 +48,8 @@ def collect() -> tuple[list[Event], dict[str, str]]:
         for e in found:
             e.venue = VENUE_ALIASES.get(e.venue, e.venue)
             have = merged.setdefault(e.key(), e)
+            if not have.timed and e.timed:      # a source with a real start time fills in the gap
+                have.start, have.timed = e.start, True
             # Earlier source wins; fill any gaps from later ones.
             have.image = have.image or e.image
             have.price = have.price or e.price

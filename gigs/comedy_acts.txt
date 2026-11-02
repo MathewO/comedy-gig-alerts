@@ -1,3 +1,5 @@
 # Acts to treat as comedy when a venue's own listing has no genre label.
 # One name per line, matched anywhere in the show title (case-insensitive).
+# A line starting with - means never include that act (for City Hall talks the word search wrongly catches).
 peter serafinowicz
+-helen sharman
