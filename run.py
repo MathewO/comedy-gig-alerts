@@ -2,6 +2,7 @@
 import importlib
 import json
 import pkgutil
+import re
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -41,6 +42,10 @@ def collect() -> tuple[list[Event], dict[str, str]]:
     return upcoming, report
 
 
+def _stable(page: str) -> str:
+    return re.sub(r"Last changed .*? O-BOT checks", "O-BOT checks", page)
+
+
 def snapshot(events: list[Event]) -> list[dict]:
     return [
         {"title": e.title, "start": e.start.isoformat(), "venue": e.venue, "url": e.url, "image": e.image, "until": e.until.isoformat() if e.until else None}
@@ -72,14 +77,17 @@ def main() -> int:
         return 1
     DOCS.mkdir(exist_ok=True)
     alert(events)
-    data_file = DOCS / "gigs.json"
+    data_file, page_file = DOCS / "gigs.json", DOCS / "index.html"
     new = snapshot(events)
     old = json.loads(data_file.read_text(encoding="utf-8")) if data_file.exists() else None
-    if new == old:
+    html = render(events, datetime.now())
+    # Ignore the "Last changed" stamp so a template-only edit still rewrites the page.
+    same_page = page_file.exists() and _stable(html) == _stable(page_file.read_text(encoding="utf-8"))
+    if new == old and same_page:
         print(f"{len(events)} gigs, unchanged - nothing written")
         return 0
     data_file.write_text(json.dumps(new, indent=1, ensure_ascii=False), encoding="utf-8")
-    (DOCS / "index.html").write_text(render(events, datetime.now()), encoding="utf-8")
+    page_file.write_text(html, encoding="utf-8")
     print(f"{len(events)} gigs, changed - wrote docs/index.html")
     return 0
 
