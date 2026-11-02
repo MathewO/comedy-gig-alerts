@@ -18,12 +18,14 @@ main{max-width:1000px;margin:0 auto;padding:0 24px 80px}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 header{text-align:center;padding:64px 0 32px}
-.mark{margin:0;font-family:"Bebas Neue",Impact,$font;font-size:4.6rem;font-weight:400;letter-spacing:.07em;line-height:1;text-transform:uppercase}
-.lede{margin:16px 0 0;color:var(--dim);line-height:1.6}
-.tools{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.brand{display:inline-block;--m:clamp(2rem,16vw,4.6rem)}
+.mark{margin:0;font-family:"Bebas Neue",Impact,$font;font-size:var(--m);font-weight:400;letter-spacing:.07em;line-height:1;text-transform:uppercase}
+.lede{width:0;min-width:100%;margin:16px 0 0;color:var(--dim);font-size:calc(var(--m)*.215);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tools{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:8px 0 0}
 .tools input,.tools select,.tools button{font:inherit;font-size:.95rem;color:var(--ink);background:var(--subtle);border:1px solid var(--line);border-radius:8px;padding:9px 14px}
 .tools input{flex:0 1 260px}
-.tools button{cursor:pointer}
+.tools button{cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:42px;padding:0}
+.tools button svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 h2{margin:44px 0 0;font-size:1rem;font-weight:600;text-align:center;color:var(--ink);letter-spacing:.04em}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:40px 28px;padding:24px 0 0}
 .gig{display:block;text-decoration:none}
@@ -36,7 +38,7 @@ h2{margin:44px 0 0;font-size:1rem;font-weight:600;text-align:center;color:var(--
 .price{color:var(--ink);font-weight:600}
 .cta{display:inline-block;margin-top:10px;font-size:.9rem;font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:1px}
 .empty{color:var(--dim);padding:32px 0 0;text-align:center}
-@media (max-width:640px){.mark{font-size:3rem}header{padding:44px 0 26px}main{padding:0 16px 64px}
+@media (max-width:640px){header{padding:44px 0 26px}main{padding:0 16px 64px}
 .grid{grid-template-columns:repeat(2,1fr);gap:28px 14px}.act{font-size:1rem}.meta{font-size:.82rem}}
 """)
 
@@ -48,9 +50,13 @@ document.querySelectorAll('section').forEach(s=>{s.hidden=![...s.querySelectorAl
 document.getElementById('none').hidden=[...document.querySelectorAll('.gig')].some(g=>!g.hidden)}
 q.oninput=v.onchange=apply;
 try{const s=localStorage.theme;if(s==='light'||s==='dark')root.dataset.theme=s}catch(e){}
-document.getElementById('t').onclick=()=>{
-const dark=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
-root.dataset.theme=dark?'light':'dark';try{localStorage.theme=root.dataset.theme}catch(e){}};
+const tb=document.getElementById('t'),mq=matchMedia('(prefers-color-scheme:dark)');
+const SUN='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+const MOON='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+const isDark=()=>root.dataset.theme?root.dataset.theme==='dark':mq.matches;
+function paint(){const d=isDark();tb.innerHTML=d?SUN:MOON;tb.setAttribute('aria-label',d?'Switch to light theme':'Switch to dark theme')}
+tb.onclick=()=>{root.dataset.theme=isDark()?'light':'dark';try{localStorage.theme=root.dataset.theme}catch(e){}paint()};
+mq.onchange=paint;paint();
 """
 
 
@@ -88,16 +94,16 @@ def render(events: list[Event], checked: datetime) -> str:
         accent=theme.ACCENT,
         font=theme.FONT,
     )
-    stamp = f"{checked.day} {checked:%b %Y, %H:%M}"
+    stamp = f"{checked.day} {checked:%b %Y} at {checked:%H:%M}"
     return (
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
         f"<title>{theme.TITLE}</title><style>{css}</style></head><body><main>"
-        f'<header><h1 class="mark">{theme.TITLE}</h1>'
-        f'<p class="lede">{len(events)} upcoming gigs<br>Last checked {stamp}</p></header>'
+        f'<header><div class="brand"><h1 class="mark">{theme.TITLE}</h1>'
+        f'<p class="lede">{len(events)} upcoming gigs, last checked {stamp}</p></div></header>'
         '<div class="tools"><input id="q" type="search" placeholder="Search act or venue" aria-label="Search act or venue">'
         f'<select id="v" aria-label="Venue"><option value="">All venues</option>{options}</select>'
-        '<button id="t" type="button">Theme</button></div>'
+        '<button id="t" type="button"></button></div>'
         f"{''.join(sections)}"
         '<p id="none" class="empty" hidden>No gigs match. Try a different search or venue.</p>'
         f"<script>{_JS}</script></main></body></html>"
