@@ -1,0 +1,3 @@
+# Acts to treat as comedy when a venue's own listing has no genre label.
+# One name per line, matched anywhere in the show title (case-insensitive).
+peter serafinowicz

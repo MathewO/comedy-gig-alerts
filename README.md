@@ -15,6 +15,12 @@ date-ordered page (`docs/index.html`) via GitHub Pages. No servers, no API keys.
 |---|---|
 | `gigs/sources/leadmill.py` | Leadmill comedy: Steamworks, Foundry, Sheffield Plate, Peddler Warehouse, Bar One |
 | `gigs/sources/standup.py` | stand-up.co.uk guide: City Hall, Octagon, Utilita Arena, Foundry |
+| `gigs/sources/theatres.py` | Sheffield Theatres comedy category, Montgomery Theatre only |
+| `gigs/sources/performancevenues.py` | University venues (Octagon): events the site labels as comedy; includes prices |
+| `gigs/sources/octagon.py` | Octagon Centre's own site: only acts listed in `gigs/comedy_acts.txt` |
+
+`gigs/comedy_acts.txt` lists acts to count as comedy where a venue's listing has no genre label.
+Add a name (one per line) if a comedian is missing from the page.
 
 ## Email alerts
 When a gig appears that has never been alerted on, one email lists the new gigs.
@@ -37,4 +43,4 @@ Add `gigs/sources/<name>.py` defining `NAME` and `fetch() -> list[Event]`
     python run.py
 
 ## Known gaps
-No prices: the ticket sites (See Tickets, Ticketmaster) block automated requests.
+Prices only appear for University venue gigs; the ticket sites (See Tickets, Ticketmaster) block automated requests.
