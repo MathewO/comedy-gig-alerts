@@ -5,8 +5,8 @@ from itertools import groupby
 from .model import Event
 
 _CSS = """
-:root{--bg:#f6f4ef;--card:#fff;--ink:#1c1b1a;--mute:#6b665f;--line:#e4dfd6;--accent:#c2410c}
-@media (prefers-color-scheme:dark){:root{--bg:#161514;--card:#201f1d;--ink:#f1eee8;--mute:#a39d93;--line:#34312d;--accent:#fb923c}}
+:root{--bg:#141311;--card:#1f1d1b;--ink:#f1eee8;--mute:#a39d93;--line:#34312d;--accent:#fb923c;color-scheme:dark}
+:root[data-theme=light]{--bg:#f6f4ef;--card:#fff;--ink:#1c1b1a;--mute:#6b665f;--line:#e4dfd6;--accent:#c2410c;color-scheme:light}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,sans-serif}
 main{max-width:860px;margin:0 auto;padding:24px 16px 64px}
@@ -15,6 +15,7 @@ h1{font-size:1.6rem;margin:0 0 4px}
 .tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
 .tools input,.tools select{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
 .tools input{flex:1 1 200px}
+.tools button{font:inherit;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);cursor:pointer}
 h2{font-size:1rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);margin:28px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
 .gig{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:10px;color:inherit;text-decoration:none}
 .gig:hover{border-color:var(--accent)}
@@ -34,6 +35,11 @@ function apply(){const t=q.value.toLowerCase(),vv=v.value;
 document.querySelectorAll('.gig').forEach(g=>{g.hidden=!((!t||g.dataset.t.includes(t))&&(!vv||g.dataset.v===vv))});
 document.querySelectorAll('section').forEach(s=>{s.hidden=![...s.querySelectorAll('.gig')].some(g=>!g.hidden)})}
 q.oninput=v.onchange=apply;
+const root=document.documentElement;
+try{if(localStorage.theme==='light')root.dataset.theme='light'}catch(e){}
+document.getElementById('t').onclick=()=>{const l=root.dataset.theme!=='light';
+if(l)root.dataset.theme='light';else delete root.dataset.theme;
+try{localStorage.theme=l?'light':'dark'}catch(e){}};
 """
 
 
@@ -64,6 +70,7 @@ def render(events: list[Event], generated: datetime) -> str:
         "<h1>Sheffield comedy</h1>"
         f'<p class="sub">{len(events)} upcoming gigs · last changed {generated:%d %b %Y %H:%M}</p>'
         '<div class="tools"><input id="q" type="search" placeholder="Search act or venue">'
-        f'<select id="v"><option value="">All venues</option>{options}</select></div>'
+        f'<select id="v"><option value="">All venues</option>{options}</select>'
+        '<button id="t" type="button" title="Switch light/dark">◐</button></div>'
         f"{body}<script>{_JS}</script></main></body></html>"
     )
