@@ -4,8 +4,8 @@ Colours are named once here. The page uses them as CSS variables; the email
 (which can't use variables) reads the LIGHT values directly.
 """
 
-BRAND = "O-BOT"  # sender name and sign-off only
-TITLE = "Sheffield comedy"
+BRAND = "OBOT"  # sender name and sign-off only
+TITLE = "OBOT - COMEDY"
 
 # Sheffield orange, used sparingly: one top rule, link underlines, focus ring.
 ACCENT = "#F47B20"

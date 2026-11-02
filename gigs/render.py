@@ -7,6 +7,7 @@ from . import theme
 from .model import Event
 
 _CSS = Template("""
+@font-face{font-family:Syne;src:url(fonts/Syne.ttf) format("truetype");font-weight:400 800;font-display:swap}
 :root{$light;--accent:$accent;color-scheme:light}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){$dark;color-scheme:dark}}
 :root[data-theme=dark]{$dark;color-scheme:dark}
@@ -17,7 +18,7 @@ main{max-width:760px;margin:0 auto;padding:0 20px 80px}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 header{padding:52px 0 28px;border-bottom:1px solid var(--line)}
-.mark{margin:0;font-size:1.5rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.mark{margin:0;font-family:Syne,$font;font-size:1.9rem;font-weight:800;letter-spacing:.06em;line-height:1.1}
 .lede{margin:10px 0 0;color:var(--dim)}
 .tools{display:flex;gap:8px;flex-wrap:wrap;padding:20px 0 4px}
 .tools input,.tools select,.tools button{font:inherit;font-size:.95rem;color:var(--ink);background:var(--subtle);border:1px solid var(--line);border-radius:8px;padding:9px 12px}
