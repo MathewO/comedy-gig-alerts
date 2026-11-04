@@ -44,7 +44,8 @@ def collect() -> tuple[list[Event], dict[str, str]]:
         except Exception as exc:  # one broken source must not kill the run
             report[info.name] = f"FAILED: {exc}"
             continue
-        report[info.name] = f"{len(found)} events"
+        bare = sum(1 for e in found if not e.image)
+        report[info.name] = f"{len(found)} events" + (f", {bare} WITHOUT A PICTURE" if bare else "")
         for e in found:
             e.venue = VENUE_ALIASES.get(e.venue, e.venue)
             have = merged.setdefault(e.key(), e)

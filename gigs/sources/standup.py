@@ -49,7 +49,8 @@ def fetch() -> list[Event]:
                 venue=re.sub(r",\s*Sheffield$", "", venue),
                 url=url,
                 source=NAME,
-                image=_field(r"background-image:\s*url\('([^']+)'\)", card) or None,
+                # the card used a CSS background until the site moved the picture into an <img>; accept either
+                image=_field(r'<img[^>]*\ssrc="([^"]+)"', card) or _field(r"background-image:\s*url\('([^']+)'\)", card) or None,
             )
             new += 1
         if not cards or not new:
