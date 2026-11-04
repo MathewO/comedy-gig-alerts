@@ -121,4 +121,5 @@ def send(new: list[Event]) -> bool:
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=30) as smtp:
         smtp.login(user, password)
         smtp.send_message(msg)
+    print(f"alert emailed to {len(recipients)} recipient(s)")   # a count only: the logs are public
     return True
