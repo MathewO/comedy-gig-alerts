@@ -404,15 +404,6 @@
   "start": "2027-04-22",
   "title": "Gabrielle - The Hits"
  },
- "https://www.sheffieldcityhall.co.uk/event/gareth-malone-sing-a-long-a-gareth%3a-at-the-movies/tm_17u8v0g6gedzbrc/": {
-  "desc": "Gareth Malone is a fellow of the Royal Academy of Music where he studied with Janice Chapman and Jonathan Papp. He was awarded an honorary doctorate from the University of East Anglia and Freedom of the City of London in 2010. In 2012 he was made OBE in the Queen's birthday honours for services to music. His countrywide tour Sing along a Gareth saw him working alongside Gary Barlow and Lord Lloyd Webber on The Royal Variety show. Most recently, Gareth appeared in Sing For The King: The Search for the Coronation Choir. Where the show followed the nationwide search for a choir to perform for The King and Queen Consort at the Coronation Concert. His tour Sing-a-long-a-Gareth took to the road again in the second half of the year and is back in a new form for 2026.",
-  "end": "2026-11-08",
-  "hall": "Sheffield City Hall Memorial Hall",
-  "image": "https://assets.simpleviewinc.com/simpleview/image/fetch/c_limit,h_700,q_75,w_700/https://s1.ticketm.net/dam/a/4bb/39420dde-7f07-4dbc-b826-91d5102094bb_SOURCE",
-  "link": "https://www.ticketmaster.co.uk/gareth-malone-singalongagareth-at-the-movies-sheffield-08-11-2026/event/350064C9C303ABCE",
-  "start": "2026-11-08",
-  "title": "Gareth Malone - Sing-A-Long-A-Gareth: At The Movies"
- },
  "https://www.sheffieldcityhall.co.uk/event/harry-enfield-and-no-chums/tm_1agzkufgkdmi6d7/": {
   "desc": "Join us for a rare and entertaining evening with legendary satirical comedian and self-styled ?stupid idiot?, Harry Enfield. From the meteoric rise of Loadsamoney, a Thatcherite Visionary, to the fury of Kevin the Teenager, Harry will reflect on 40 years of arsing about in comedy and bring some of his favourite characters vividly back to life on stage.",
   "end": "2026-11-24",
@@ -430,6 +421,15 @@
   "link": "https://www.ticketmaster.co.uk/harry-redknapp-my-life-in-football-sheffield-09-11-2026/event/3500648DFF897CC6",
   "start": "2026-11-09",
   "title": "Harry Redknapp - My Life In Football and Beyond"
+ },
+ "https://www.sheffieldcityhall.co.uk/event/heaven-17%3a-the-greatest-hits-live-with-orchestra/tm_1agzk4pgkeihfqq/": {
+  "desc": "",
+  "end": "2027-11-06",
+  "hall": "Sheffield City Hall Oval Hall",
+  "image": "https://assets.simpleviewinc.com/simpleview/image/fetch/c_limit,h_700,q_75,w_700/https://s1.ticketm.net/dam/a/461/692dfe4d-09a1-4ddb-867b-1da1cc70e461_SOURCE",
+  "link": "https://www.ticketmaster.co.uk/heaven-17-the-greatest-hits-live-sheffield-06-11-2027/event/35006565A8F0869D",
+  "start": "2027-11-06",
+  "title": "Heaven 17: The Greatest Hits, Live with Orchestra"
  },
  "https://www.sheffieldcityhall.co.uk/event/helen-sharman-space-for-the-future/tm_1adfz_4gklmdaxc/": {
   "desc": "Join Britain's first astronaut, Helen Sharman on her first ever tour, as she reflects on her trailblazing 1991 mission into space and shares her views on the future of human spaceflight and the exciting science that such missions may lead to. In the second half Helen will be joined on stage by the multi-award winning comedian, author and science broadcaster Robin Ince to share more fascinating insights into how space exploration is evolving and take audience questions about the challenges we face on Earth and the scientific discoveries that lie ahead.",
@@ -979,24 +979,6 @@
   "link": "https://www.ticketmaster.co.uk/rumours-of-fleetwood-mac-50th-anniversary-sheffield-25-07-2027/event/350064F4E6DD618E",
   "start": "2027-07-25",
   "title": "Rumours of Fleetwood Mac - 50th Anniversary Tour 2027"
- },
- "https://www.sheffieldcityhall.co.uk/event/russell-howard-dont-tell-the-algorithm/tm_1agzkgwgkdsjr7l/": {
-  "desc": "Russell Howard is back with a brand-new stand-up tour in 2026. After breaking records with sold-out shows across the globe, 'one of the world?s top comedians' (The Sunday Times) is inviting you back into the room: no phones, no distractions, just humans and jokes. Don?t tell the algorithm.",
-  "end": "2026-11-08",
-  "hall": "Sheffield City Hall Oval Hall",
-  "image": "https://assets.simpleviewinc.com/simpleview/image/fetch/c_limit,h_700,q_75,w_700/https://s1.ticketm.net/dam/a/e28/ce6f89d6-2525-4f57-945a-91914f078e28_SOURCE",
-  "link": "https://www.ticketmaster.co.uk/russell-howard-dont-tell-the-algorithm-sheffield-08-11-2026/event/35006332F371E12B",
-  "start": "2026-11-08",
-  "title": "Russell Howard - Don't Tell The Algorithm"
- },
- "https://www.sheffieldcityhall.co.uk/event/russell-howard-dont-tell-the-algorithm/tm_1agzkgwgkdzbrzv/": {
-  "desc": "Russell Howard is back with a brand-new stand-up tour in 2026. After breaking records with sold-out shows across the globe, 'one of the world?s top comedians' (The Sunday Times) is inviting you back into the room: no phones, no distractions, just humans and jokes. Don?t tell the algorithm.",
-  "end": "2026-11-08",
-  "hall": "Sheffield City Hall Oval Hall",
-  "image": "https://assets.simpleviewinc.com/simpleview/image/fetch/c_limit,h_700,q_75,w_700/https://s1.ticketm.net/dam/a/e28/ce6f89d6-2525-4f57-945a-91914f078e28_SOURCE",
-  "link": "https://www.ticketmaster.co.uk/russell-howard-dont-tell-the-algorithm-sheffield-08-11-2026/event/35006332F8E9EE01",
-  "start": "2026-11-08",
-  "title": "Russell Howard - Don't Tell The Algorithm"
  },
  "https://www.sheffieldcityhall.co.uk/event/saxon-gods-of-thunder/tm_17u8v0g6u1ch5pm/": {
   "desc": "Support - Armoured Saint",
