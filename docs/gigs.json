@@ -1,21 +1,5 @@
 [
  {
-  "title": "The Dark Room",
-  "start": "2026-11-11T18:30:00",
-  "venue": "Foundry",
-  "url": "https://leadmill.co.uk/event/the-dark-room-foundry/",
-  "image": "https://leadmill.co.uk/wp-content/uploads/2023/09/dark-room-website.jpg",
-  "until": null
- },
- {
-  "title": "Josh Thomas",
-  "start": "2026-11-11T18:30:00",
-  "venue": "The Steamworks",
-  "url": "https://leadmill.co.uk/event/josh-thomas-the-steamworks/",
-  "image": "https://leadmill.co.uk/wp-content/uploads/2026/03/josh-thomas-web.jpg",
-  "until": null
- },
- {
   "title": "Funny Business",
   "start": "2026-11-12T19:00:00",
   "venue": "Sheffield City Hall Memorial Hall",
@@ -37,6 +21,14 @@
   "venue": "Sheffield City Hall Oval Hall",
   "url": "https://www.ticketmaster.co.uk/simon-brodkin-unleashed-sheffield-13-11-2026/event/3500648EFC086611",
   "image": "https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_700,q_75,w_700/v1/clients/asm-sheffieldcityhall/2426x1365_jpg100__ac52944d-abce-4ffd-b342-8bab217d7ceb.jpg",
+  "until": null
+ },
+ {
+  "title": "Nish Kumar: Angry Humour From a Really Nice Guy",
+  "start": "2026-11-13T19:30:00",
+  "venue": "Octagon Centre",
+  "url": "https://performancevenues.group.shef.ac.uk/our-events/nish-kumar-angry-humour-from-a-really-nice-guy/",
+  "image": "https://performancevenues.group.shef.ac.uk/wp-content/uploads/2026/01/NISH-KUMAR-AHFARNG-1080_1080-COPYRIGHT-MATT-STRONGE.jpg",
   "until": null
  },
  {
@@ -424,11 +416,11 @@
   "until": "2027-02-05T20:00:00"
  },
  {
-  "title": "Scott Bennett - Stuff",
+  "title": "Scott Bennett: Stuff",
   "start": "2027-02-05T19:30:00",
   "venue": "Octagon Centre",
   "url": "https://performancevenues.group.shef.ac.uk/our-events/scott-bennett-stuff/",
-  "image": "https://s1.ticketm.net/dam/a/9e4/f341923c-97a2-4c7e-842f-704b960a09e4_SOURCE",
+  "image": "https://performancevenues.group.shef.ac.uk/wp-content/uploads/2026/03/scott-bennett-1.png",
   "until": null
  },
  {
@@ -552,11 +544,11 @@
   "until": null
  },
  {
-  "title": "Maisie Adam: Whatsherface",
+  "title": "Maisie Adam – Whatsherface",
   "start": "2027-03-09T19:30:00",
   "venue": "Octagon Centre",
   "url": "https://performancevenues.group.shef.ac.uk/our-events/maisie-adam-whatsherface/",
-  "image": "https://s1.ticketm.net/dam/a/ca1/e36c4d64-bdcc-4ca2-bb2f-9572c4ea6ca1_SOURCE",
+  "image": "https://performancevenues.group.shef.ac.uk/wp-content/uploads/2026/03/whatsherface.png",
   "until": null
  },
  {
