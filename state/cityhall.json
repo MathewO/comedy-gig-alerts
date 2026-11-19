@@ -251,15 +251,6 @@
   "start": "2026-12-05",
   "title": "Day Fever"
  },
- "https://www.sheffieldcityhall.co.uk/event/del-amitri%3a-past-to-present-four-decades-of-their-greatest-music/tm_1agzkofgkeepvqb/": {
-  "desc": "Del Amitri announce the ?Past To Present? UK tour 2026, marking four decades of songs, stories and live shows. A celebration of a catalogue that has soundtracked generations. Support from Former Champ",
-  "end": "2026-11-17",
-  "hall": "Sheffield City Hall Oval Hall",
-  "image": "https://assets.simpleviewinc.com/simpleview/image/fetch/c_limit,h_700,q_75,w_700/https://s1.ticketm.net/dam/a/5e8/06c84c4d-8005-4127-b0a4-a0f7681d95e8_SOURCE",
-  "link": "https://www.ticketmaster.co.uk/del-amitri-past-to-present-four-sheffield-17-11-2026/event/35006454A75B4758",
-  "start": "2026-11-17",
-  "title": "Del Amitri: Past to Present - Four Decades Of Their Greatest Music"
- },
  "https://www.sheffieldcityhall.co.uk/event/disney-princess-the-concert/tm_17u8v0g652kq4fi/": {
   "desc": "For generations, the music of Disney's princesses has been the soundtrack to our lives. Now, these beloved songs come alive on stage with a host of acclaimed Broadway and West End stars in DISNEY PRINCESS - THE CONCERT. Your every dream will come true as larger-than-life animation and theatrical effects immerse the audience in pure Disney magic, while these powerhouse talents sing your favourite princess, hero and (yes!) villain songs, and share behind-the-scenes stories from their time on the stage and screen. We invite you to relive your VHS glory days, dress up in your favourite royal attire, and share the joy of Disney with your loved ones at this internationally acclaimed concert experience. Be part of our world at DISNEY PRINCESS - THE CONCERT!",
   "end": "2027-04-08",
@@ -286,6 +277,15 @@
   "link": "https://www.ticketmaster.co.uk/disneys-muppet-christmas-carol-in-concert-sheffield-10-12-2026/event/3500648ECF2A49EC",
   "start": "2026-12-10",
   "title": "Disney's Muppet Christmas Carol in Concert - Live to Film"
+ },
+ "https://www.sheffieldcityhall.co.uk/event/dolly-parton-threads/tm_1agzk4tgkduja7y/": {
+  "desc": "Celebrate the life and legacy of the one and only Dolly Parton with Dolly Parton?s Threads: My Songs In Symphony. Produced by Dolly herself, this innovative multimedia experience features Dolly on screen, leading audiences in a visual-musical journey of her songs, her life, and her stories, with content filmed specially for this concert at her studios in 2025. With a cast of phenomenal guest vocalists and musicians, along with new and innovative orchestrations by David Hamilton, Dolly Parton?s Threads: My Songs in Symphony, features hit songs, including ?Jolene,? ?Coat Of Many Colors,? and ?I Will Always Love You,? in addition to Dolly?s personal favorites and a heartwarming new song from her upcoming Broadway musical. Co-produced by Dolly Parton together with Schirmer Theatrical and Sony Music Publishing.",
+  "end": "2027-04-05",
+  "hall": "Sheffield City Hall Oval Hall",
+  "image": "https://assets.simpleviewinc.com/simpleview/image/fetch/c_limit,h_700,q_75,w_700/https://s1.ticketm.net/dam/a/71f/ad346d7c-dc49-4090-9573-6242059b971f_SOURCE",
+  "link": "https://www.ticketmaster.co.uk/dolly-parton-threads-sheffield-05-04-2027/event/35006569CD705130",
+  "start": "2027-04-05",
+  "title": "Dolly Parton Threads"
  },
  "https://www.sheffieldcityhall.co.uk/event/dylan-moran%3a-looking-for-trouble/tm_1agzkofgke-3va0/": {
   "desc": "Showtime. What are you going to do? Are you going to go to work? Or stay in bed, chasing oblivion. Guess what? We're fresh out of oblivion. The Economy will do fine without you - but how long will you survive without the usual giant horn of frozen caramel latte and the five thousand other pieces of bullshit you have smushed together so you can point at it and croak 'That?s my ..life?' A brand new show from BAFTA and Perrier awarding winning comedian & star of Black Books, Dylan Moran.",
@@ -1070,14 +1070,14 @@
   "start": "2027-02-22",
   "title": "Sonic Live in Concert"
  },
- "https://www.sheffieldcityhall.co.uk/event/sophie-ellis-bextors-christmas-disco-tour/tm_1adfz_pgkn23eqf/": {
-  "desc": "",
+ "https://www.sheffieldcityhall.co.uk/event/sophie-ellis-bextors-christmas-kitchen-disco-tour/tm_1adfz_pgkn23eqf/": {
+  "desc": "It?s time to dust off the sequins and get the tinsel out, as Sophie Ellis-Bextor brings her Christmas Kitchen Disco Tour back to the UK next winter, with 17 dates across November and December 2027, with a sparkly show at Sheffield City Hall on the 1st December. The show will include festive disco favourites as well as Sophie?s own hits, with a 2027 Christmas Disco album announced closer to the time. Sophie?s previous Christmas Kitchen Disco tour in 2023 sold out across the UK, with The Guardian hailing it ?an enjoyably merry spectacle? and The i calling it ?the most festive of shows?.",
   "end": "2027-12-01",
   "hall": "Sheffield City Hall Oval Hall",
   "image": "https://assets.simpleviewinc.com/simpleview/image/fetch/c_limit,h_700,q_75,w_700/https://s1.ticketm.net/dam/a/e6d/cfd7ac00-2507-4c43-9690-874257ad9e6d_SOURCE",
-  "link": "https://www.ticketmaster.co.uk/sophie-ellisbextors-christmas-disco-tour-sheffield-01-12-2027/event/3500656A8F482748",
+  "link": "https://www.ticketmaster.co.uk/sophie-ellisbextors-christmas-kitchen-disco-tour-sheffield-01-12-2027/event/3500656A8F482748",
   "start": "2027-12-01",
-  "title": "Sophie Ellis-Bextor's Christmas Disco Tour"
+  "title": "Sophie Ellis-Bextor's Christmas Kitchen Disco Tour"
  },
  "https://www.sheffieldcityhall.co.uk/event/sounds-of-the-60s-live-hosted-by-tony-blackburn-obe/tm_16dfz_frog7znsk/": {
   "desc": "An evening of 60s classics performed by the Sounds Of The 60s All Star Band & Singers, hosted by Radio 2?s legendary DJ,Tony Blackburn OBE. Every week, listeners across the UK tune into BBC Radio 2 to hear the legendary Tony Blackburn play the greatest songs of the 60?s. Now, the legendary DJ will be taking his Sounds of the 60?s show on the road, for a UK tour celebrating the music of this much-loved decade. Featuring stories and songs from perhaps the most iconic 10 years in music, fashion and popular culture, the Sounds of the 60s tour will bring to life memories of the era. The Sounds of the 60s All-Star Band and Singers will perform classic hits from the likes of The Everly Brothers, Elvis, The Drifters, Marvin Gaye, along with fresh medleys from The Rolling Stones, The Walker Brothers, and some of the greatest soul tracks ever recorded, alongside timeless classics from Diana Ross & The Supremes, The Beatles, The Beach Boys, Stevie Wonder and much more.",
