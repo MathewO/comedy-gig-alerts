@@ -256,14 +256,6 @@
   "until": null
  },
  {
-  "title": "Amy Gledhill: Thanks For Having Me",
-  "start": "2027-02-04T20:00:00",
-  "venue": "Montgomery Theatre",
-  "url": "https://www.sheffieldtheatres.co.uk/events/amy-gledhill",
-  "image": "https://sheffield-theatres.transforms.svdcdn.com/production/EVENTS/Montgomery/Amy-Gledhill-Thanks-Digital-Screens-1920_1080.jpg?w=360&h=201&q=100&auto=format&fit=crop&dm=1779367244&s=721c3a5810b7eff24e70a92fccc723fa",
-  "until": "2027-02-05T20:00:00"
- },
- {
   "title": "Scott Bennett: Stuff",
   "start": "2027-02-05T19:30:00",
   "venue": "Octagon Centre",
@@ -288,14 +280,6 @@
   "until": null
  },
  {
-  "title": "Jack Dee: Jack's Joke Show",
-  "start": "2027-02-10T19:30:00",
-  "venue": "Montgomery Theatre",
-  "url": "https://www.sheffieldtheatres.co.uk/events/jack-dee-jacks-joke-show",
-  "image": "https://sheffield-theatres.transforms.svdcdn.com/production/JackDee_1920x1080px_Sep26.jpg?w=360&h=201&q=100&auto=format&fit=crop&dm=1790676752&s=19af72e0e0f21f4555de12cc11819010",
-  "until": null
- },
- {
   "title": "Hannah East",
   "start": "2027-02-13T14:00:00",
   "venue": "Peddler Warehouse",
@@ -309,14 +293,6 @@
   "venue": "Peddler Warehouse",
   "url": "https://leadmill.co.uk/event/hannah-east-peddler/",
   "image": "https://leadmill.co.uk/wp-content/uploads/2025/05/hannah-east-website.jpg",
-  "until": null
- },
- {
-  "title": "Alfie Moore: Acopalypse Now",
-  "start": "2027-02-13T19:30:00",
-  "venue": "Montgomery Theatre",
-  "url": "https://www.sheffieldtheatres.co.uk/events/alfie-moore-acopalypse-now",
-  "image": "https://sheffield-theatres.transforms.svdcdn.com/production/EVENTS/Montgomery/Acopalypse-Now_Clean_2500-x-1360-web.jpg?w=360&h=201&q=100&auto=format&fit=crop&dm=1783950843&s=d52c6639acfed7ded84d54cf1b6524bc",
   "until": null
  },
  {
@@ -360,14 +336,6 @@
   "until": null
  },
  {
-  "title": "Aurie Styla: Maverick",
-  "start": "2027-02-26T19:30:00",
-  "venue": "Montgomery Theatre",
-  "url": "https://www.sheffieldtheatres.co.uk/events/aurie-styla",
-  "image": "https://sheffield-theatres.transforms.svdcdn.com/production/EVENTS/Montgomery/Aurie-Styla-Maverick.jpg?w=360&h=201&q=100&auto=format&fit=crop&dm=1779458513&s=e57a53de80cabb049372eaebe7f720e3",
-  "until": null
- },
- {
   "title": "Chloe Petts",
   "start": "2027-02-28T18:30:00",
   "venue": "The Steamworks",
@@ -400,14 +368,6 @@
   "until": null
  },
  {
-  "title": "Murder, She Didn't Write",
-  "start": "2027-03-18T19:30:00",
-  "venue": "Montgomery Theatre",
-  "url": "https://www.sheffieldtheatres.co.uk/events/murder-she-didnt-write",
-  "image": "https://sheffield-theatres.transforms.svdcdn.com/production/EVENTS/Montgomery/MurderSheDidntWrite_1920-x-1080.jpg?w=360&h=201&q=100&auto=format&fit=crop&dm=1779361038&s=ba35c048eba4a06d15ce37f12e086b36",
-  "until": "2027-03-20T19:30:00"
- },
- {
   "title": "Andrew Bird - On Edge",
   "start": "2027-03-18T20:00:00",
   "venue": "Sheffield City Hall Memorial Hall",
@@ -432,14 +392,6 @@
   "until": null
  },
  {
-  "title": "Jack Skipper: Nothing Heavy",
-  "start": "2027-03-25T20:00:00",
-  "venue": "Montgomery Theatre",
-  "url": "https://www.sheffieldtheatres.co.uk/events/jack-skipper-nothing-heavy",
-  "image": "https://sheffield-theatres.transforms.svdcdn.com/production/Jack-Dee.png?w=360&h=201&q=100&auto=format&fit=crop&dm=1790677320&s=09c335c54c6b85b7fa7678690203e5b4",
-  "until": null
- },
- {
   "title": "Kemah Bob",
   "start": "2027-03-27T19:00:00",
   "venue": "Sheffield Plate",
@@ -453,14 +405,6 @@
   "venue": "Octagon Centre",
   "url": "https://performancevenues.group.shef.ac.uk/our-events/the-peter-serafinowicz-live-show/",
   "image": "https://cdn2.gigantic.com/static/images/event/410x250/the_peter_serafinowicz_live_show-7931804788.jpg",
-  "until": null
- },
- {
-  "title": "Myra DuBois: Siren",
-  "start": "2027-04-03T19:30:00",
-  "venue": "Montgomery Theatre",
-  "url": "https://www.sheffieldtheatres.co.uk/events/myra-dubois-siren",
-  "image": "https://sheffield-theatres.transforms.svdcdn.com/production/Siren-UK-1920x1080-1.jpg?w=360&h=201&q=100&auto=format&fit=crop&dm=1790677920&s=8b0472c29e307f994cc1db719f290f4d",
   "until": null
  },
  {
@@ -544,28 +488,12 @@
   "until": null
  },
  {
-  "title": "A Shoddy Detective",
-  "start": "2027-04-28T19:30:00",
-  "venue": "Montgomery Theatre",
-  "url": "https://www.sheffieldtheatres.co.uk/events/a-shoddy-detective",
-  "image": "https://sheffield-theatres.transforms.svdcdn.com/production/EVENTS/Montgomery/Shoddy-1920-x-1080.png?w=360&h=201&q=100&auto=format&fit=crop&dm=1779361595&s=f2fb7a9fab5fd5ec7c68c4306f5bc324",
-  "until": "2027-04-30T19:30:00"
- },
- {
   "title": "Lost Voice Guy",
   "start": "2027-04-29T18:30:00",
   "venue": "Foundry",
   "url": "https://leadmill.co.uk/event/lost-voice-guy-foundry/",
   "image": "https://leadmill.co.uk/wp-content/uploads/2026/09/lost-voice-guy-web.jpg",
   "until": null
- },
- {
-  "title": "Margaret Thatcher: Queen of Hollywood",
-  "start": "2027-05-04T19:30:00",
-  "venue": "Montgomery Theatre",
-  "url": "https://www.sheffieldtheatres.co.uk/events/margaret-thatcher-queen-of-hollywood",
-  "image": "https://sheffield-theatres.transforms.svdcdn.com/production/2500x1380_Maggie_Sheffield_V1.jpg?w=360&h=201&q=100&auto=format&fit=crop&dm=1790845019&s=1a813cd6847feeecd92d08eb6008ac58",
-  "until": "2027-05-06T19:30:00"
  },
  {
   "title": "Adam Kay - This Is Going To Hurt (10 Year Anniversary Special)",
@@ -581,14 +509,6 @@
   "venue": "Sheffield City Hall Oval Hall",
   "url": "https://www.ticketmaster.co.uk/shoot-from-the-hip-sheffield-07-05-2027/event/3500654E9873300F",
   "image": "https://assets.simpleviewinc.com/simpleview/image/fetch/c_limit,h_700,q_75,w_700/https://s1.ticketm.net/dam/e/cd5/5b37e7a8-3a92-4b9c-ab3d-263d818dfcd5_SOURCE",
-  "until": null
- },
- {
-  "title": "Rhys James: Chop Logic",
-  "start": "2027-05-14T19:30:00",
-  "venue": "Montgomery Theatre",
-  "url": "https://www.sheffieldtheatres.co.uk/events/rhys-james",
-  "image": "https://sheffield-theatres.transforms.svdcdn.com/production/EVENTS/Montgomery/RJ_ChopLogic_HeroNameTitle_1920x1080px.jpg?w=360&h=201&q=100&auto=format&fit=crop&dm=1779361857&s=7f6a04b0ce8b48bc211a1bed88ca15f4",
   "until": null
  },
  {
@@ -664,14 +584,6 @@
   "until": null
  },
  {
-  "title": "Gary Delaney: Gary On Laughing",
-  "start": "2027-06-29T19:30:00",
-  "venue": "Montgomery Theatre",
-  "url": "https://www.sheffieldtheatres.co.uk/events/gary-delaney-2027",
-  "image": "https://sheffield-theatres.transforms.svdcdn.com/production/Gary-Delaney-TOUR-IMAGE-900-x-505.jpg?w=360&h=201&q=100&auto=format&fit=crop&dm=1790847992&s=9bcb8e67c2fdf560c8f324e2471c51bc",
-  "until": "2027-06-30T19:30:00"
- },
- {
   "title": "Kate Dolan",
   "start": "2027-07-08T18:30:00",
   "venue": "The Steamworks",
@@ -718,14 +630,6 @@
   "url": "https://leadmill.co.uk/event/tom-houghton/",
   "image": "https://leadmill.co.uk/wp-content/uploads/2026/11/tom-houghton-web.jpg",
   "until": null
- },
- {
-  "title": "Porridge",
-  "start": "2027-10-25T19:30:00",
-  "venue": "Montgomery Theatre",
-  "url": "https://www.sheffieldtheatres.co.uk/events/porridge",
-  "image": "https://sheffield-theatres.transforms.svdcdn.com/production/Porridge-Social_1920-x-1080px.jpg?w=360&h=201&q=100&auto=format&fit=crop&dm=1790846395&s=9d4703c3a9beba24b4abf8e5f73821b8",
-  "until": "2027-10-27T19:30:00"
  },
  {
   "title": "Joe Lycett: Do You Really Lycett? Is It, Is It Wicked?...",
