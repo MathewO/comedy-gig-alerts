@@ -1,29 +1,5 @@
 [
  {
-  "title": "Michael Akadiri",
-  "start": "2026-11-21T16:00:00",
-  "venue": "Sheffield Plate",
-  "url": "https://leadmill.co.uk/event/michael-akadiri-matinee/",
-  "image": "https://leadmill.co.uk/wp-content/uploads/2025/10/akadiri-web.jpg",
-  "until": null
- },
- {
-  "title": "Michael Akadiri",
-  "start": "2026-11-21T19:00:00",
-  "venue": "Sheffield Plate",
-  "url": "https://leadmill.co.uk/event/michael-akadiri/",
-  "image": "https://leadmill.co.uk/wp-content/uploads/2025/10/akadiri-web.jpg",
-  "until": null
- },
- {
-  "title": "Last Laugh Comedy Club",
-  "start": "2026-11-21T19:30:00",
-  "venue": "Sheffield City Hall Memorial Hall",
-  "url": "https://www.ticketmaster.co.uk/last-laugh-comedy-club-sheffield-21-11-2026/event/3500652FE0A94C35",
-  "image": "https://assets.simpleviewinc.com/simpleview/image/fetch/c_limit,h_700,q_75,w_700/https://s1.ticketm.net/dam/a/cd9/5c502837-59ca-4d96-91f8-159d1aae7cd9_SOURCE",
-  "until": null
- },
- {
   "title": "Harry Enfield and No Chums",
   "start": "2026-11-24T19:30:00",
   "venue": "Sheffield City Hall Oval Hall",
@@ -205,14 +181,6 @@
   "venue": "Sheffield City Hall Memorial Hall",
   "url": "https://www.ticketmaster.co.uk/last-laugh-comedy-club-sheffield-31-12-2026/event/3500655EA443A202",
   "image": "https://assets.simpleviewinc.com/simpleview/image/fetch/c_limit,h_700,q_75,w_700/https://s1.ticketm.net/dam/a/cd9/5c502837-59ca-4d96-91f8-159d1aae7cd9_SOURCE",
-  "until": null
- },
- {
-  "title": "Fatiha el-Ghorri: Cockney Stacking Doll",
-  "start": "2027-01-08T19:30:00",
-  "venue": "Montgomery Theatre",
-  "url": "https://www.sheffieldtheatres.co.uk/events/fatiha-el-ghorri",
-  "image": "https://sheffield-theatres.transforms.svdcdn.com/production/EVENTS/Montgomery/FEG_CockneyStackingDoll_2026_11_13_Sheffield_Website_2500x1380px_v1.jpg?w=360&h=201&q=100&auto=format&fit=crop&dm=1779360679&s=2faa397ca47c13b8ee8dc03ce5a57099",
   "until": null
  },
  {
